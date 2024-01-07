@@ -3,6 +3,7 @@ import { Inter, Besley } from "next/font/google";
 
 import "./globals.css";
 import Navbar from "./component/Navabar/NavbarUp";
+import Footer from "./component/Navabar/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 // const besley = Besley({ subsets: ["latin"], weight: ["500"] });
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar></Navbar>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );

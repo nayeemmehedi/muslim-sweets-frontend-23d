@@ -13,24 +13,24 @@ const SlideShow = () => {
     {
       pic: "https://images.unsplash.com/photo-1512223792601-592a9809eed4?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 
-      content_h1: "Muslim Sweets & Chocolate",
-      content_h2: "Narail,Lohagora",
+      content_h1: "মিষ্টি কিনতে চাও..",
+      content_h2: "চলে আসো  লোহাগড়া নড়াইল",
       content_p:
         "There is nothing more significant than love and chocolate. They make a truly winning combination.",
     },
     {
       pic: "https://images.unsplash.com/photo-1615796701805-2094ac54bbf9?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 
-      content_h1: "Our Product 100% Pure",
-      content_h2: "Narail,Lohagora",
+      content_h1: "আমাদের পণ্য ১০০% শুদ্ধ",
+      content_h2: " ",
       content_p:
         "There is nothing more significant than love and chocolate. They make a truly winning combination.",
     },
     {
       pic: "https://images.unsplash.com/photo-1518090878263-90511084a1ba?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 
-      content_h1: "Product Pure & Authentic",
-      content_h2: "Narail,Lohagora",
+      content_h1: "",
+      content_h2: "Lohagora,Narail,Bangladesh",
       content_p:
         "There is nothing more significant than love and chocolate. They make a truly winning combination.",
     },
@@ -52,8 +52,8 @@ const SlideShow = () => {
 
           <div className={dancing_Script.className}>
             <div className="content">
-              <h1>{each.content_h1}</h1>
-              <h2 className="text-amber-400">{each.content_h2}</h2>
+              <p className="text-4xl text-amber-300">{each.content_h1}</p>
+              <p className="text-amber-400">{each.content_h2}</p>
               <p className="mt-5 ">{each.content_p}</p>
             </div>
           </div>

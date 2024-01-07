@@ -3,6 +3,7 @@ import SlideShow from '../Navabar/SlideShow'
 import PatisserieProduct from '../ServiceDescription/PatisserieProduces'
 import Unique from '../ServiceDescription/Unique'
 import OnlineStore from '../ServiceDescription/OnlineStore'
+import Testimonial from '../ServiceDescription/Testimonial'
 
 function MainComponent() {
   return (
@@ -11,6 +12,7 @@ function MainComponent() {
          <PatisserieProduct></PatisserieProduct>
          <Unique></Unique>
          <OnlineStore></OnlineStore>
+         <Testimonial></Testimonial>
     </div>
   )
 }
