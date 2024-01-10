@@ -34,7 +34,7 @@
   
   .content h1{
     font-size: 65px;
-    color:white;
+    /* color:white; */
     /* margin-bottom: 20px; */
   }
   
@@ -45,7 +45,7 @@
   
   .content p{
     /* font-size: 50px; */
-    color:rgb(156, 136, 136);
+    /* color:rgb(156, 136, 136); */
     margin-bottom: 20px;
     opacity: .8;
   }

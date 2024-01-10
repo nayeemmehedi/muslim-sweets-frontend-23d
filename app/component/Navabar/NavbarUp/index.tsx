@@ -9,11 +9,19 @@ import { GiWrappedSweet } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
 import { TbUserSearch } from "react-icons/tb";
 import { TbShoppingCartSearch } from "react-icons/tb";
+import Link from "next/link";
 
 const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
 
 function navResponsive() {
-  let NavValue = ["Home", "About Us", "Products", "Blog", "Contacts"];
+  let NavValue = [
+    { name: "Home", link: "/" },
+    { name: "Products", link: "/product" },
+    { name: "About Us", link: "/aboutUs" },
+
+    // { name: "Blog", link: "/" },
+    { name: "Contacts", link: "/contact-us" },
+  ];
 
   const [toggle, setToggle] = useState(false);
 
@@ -22,6 +30,7 @@ function navResponsive() {
   }
 
   return (
+    // 14100b
     <div className="bg-[#14100b]">
       <div className="">
         <div className=" text-white">
@@ -54,7 +63,8 @@ function navResponsive() {
                 {NavValue?.map((nav, i) => (
                   <li key={i}>
                     <a className="hover:text-gray-500" href="#">
-                      {nav}
+                      <Link href={nav.link}> {nav.name}</Link>
+
                       <span className="text-xs font-thin text-amber-400">
                         +
                       </span>
@@ -64,10 +74,12 @@ function navResponsive() {
               </ul>
             </div>
 
-            <div className="flex items-center gap-6 text-amber-300 " >
-              <IoSearch size={22} />
-              <TbUserSearch size={22}/>
-              <TbShoppingCartSearch size={22}  />
+            <div className="flex items-center gap-6 text-amber-300 ">
+              {/* <IoSearch size={22} /> */}
+             <Link href={"/login"}> <TbUserSearch size={22} /></Link>
+             <Link href={"/card"}> <TbShoppingCartSearch size={22} /></Link>
+
+              
 
               <div
                 onClick={clickToggle}

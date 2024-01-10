@@ -1,7 +1,6 @@
-import React from "react";
 import MainComponent from "./component/MainComponent";
 
-function page() {
+async function page() {
   return (
     <div className="bg-[#14100b]">
       <MainComponent></MainComponent>

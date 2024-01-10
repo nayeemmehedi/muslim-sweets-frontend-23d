@@ -3,71 +3,7 @@ import Toprate from "@/app/component/product/topRated";
 import React from "react";
 
 function Product() {
-  const product = [
-    {
-      image: "../../../public/chomchom.jpg",
-      name: "Chomchom",
-      banglaName: "কাটারী ভোগ",
-      price: 40,
-      rating: 4,
-      available: "Unavailable",
-      availableTime: "6AM-12PM",
-    },
-    {
-      image: "../../../public/chomchom.jpg",
-      name: "Chomchom",
-      banglaName: "কাটারী ভোগ",
-      price: 40,
-      rating: 4,
-      available: "Unavailable",
-      availableTime: "6AM-12PM",
-    },
-    {
-      image: "../../../public/chomchom.jpg",
-      name: "Chomchom",
-      banglaName: "কাটারী ভোগ",
-      price: 40,
-      rating: 4,
-      available: "Unavailable",
-      availableTime: "6AM-12PM",
-    },
-    {
-      image: "../../../public/chomchom.jpg",
-      name: "Chomchom",
-      banglaName: "কাটারী ভোগ",
-      price: 40,
-      rating: 4,
-      available: "Unavailable",
-      availableTime: "6AM-12PM",
-    },
-    {
-      image: "../../../public/chomchom.jpg",
-      name: "Chomchom",
-      banglaName: "কাটারী ভোগ",
-      price: 40,
-      rating: 4,
-      available: "Unavailable",
-      availableTime: "6AM-12PM",
-    },
-    {
-      image: "../../../public/chomchom.jpg",
-      name: "Chomchom",
-      banglaName: "কাটারী ভোগ",
-      price: 40,
-      rating: 4,
-      available: "Unavailable",
-      availableTime: "6AM-12PM",
-    },
-    {
-      image: "../../../public/chomchom.jpg",
-      name: "Chomchom",
-      banglaName: "কাটারী ভোগ",
-      price: 40,
-      rating: 4,
-      available: "Unavailable",
-      availableTime: "6AM-12PM",
-    },
-  ];
+  
 
   return (
     <div className="container w-[90%] ml-auto mr-auto">

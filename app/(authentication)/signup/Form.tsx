@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { Button, Checkbox, Form, Input, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import {ColorChange} from "../../utls/ColorChange"

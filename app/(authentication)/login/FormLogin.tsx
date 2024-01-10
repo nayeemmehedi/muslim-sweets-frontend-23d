@@ -62,7 +62,9 @@ const FormLogin: React.FC = () => {
         </Button>
         
       </Form.Item>
-      <div className='text-amber-500'><Link href="/signup"> Or register now!</Link> </div>
+      <Link href="/signup">
+      <div className='text-amber-500'> Or register now! </div>
+      </Link>
      </div>
     </Form>
   );

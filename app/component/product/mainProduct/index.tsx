@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function MainProduct() {
@@ -56,6 +57,16 @@ function MainProduct() {
                 <p>{p.availableTime}</p>
               </div>
             </div>
+            <Link href={`/product/${p.name}`}>
+            <div className="flex justify-center my-1">
+              
+                {" "}
+                <button className="border border-red-600 text-red-500 hover:text-blue-500 hover:border-blue-400  p-1 w-1/2   ">
+                  Click me
+                </button>
+              
+            </div>
+            </Link>
           </div>
         ))}
       </div>
