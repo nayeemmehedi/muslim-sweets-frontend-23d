@@ -70,6 +70,8 @@ function MainProduct() {
           </div>
         ))}
       </div>
+
+      
     </div>
   );
 }

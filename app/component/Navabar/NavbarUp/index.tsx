@@ -18,8 +18,6 @@ function navResponsive() {
     { name: "Home", link: "/" },
     { name: "Products", link: "/product" },
     { name: "About Us", link: "/aboutUs" },
-
-    // { name: "Blog", link: "/" },
     { name: "Contacts", link: "/contact-us" },
   ];
 

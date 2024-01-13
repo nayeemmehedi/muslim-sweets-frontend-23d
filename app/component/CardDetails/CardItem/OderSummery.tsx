@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Button, Input, Space } from "antd";
+import Link from "next/link";
 
 function OderSummery() {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
@@ -34,9 +35,11 @@ function OderSummery() {
             <p className="text-orange-300">৳ 1,062</p>
           </div>
           <div className="my-4">
+            <Link href="confirm-product">
             <button className="w-full py-2 border  border-red-500 text-red-400 hover:text-blue-600">
               PROCEED TO CHECKOUT
             </button>
+            </Link>
           </div>
         </div>
       </div>

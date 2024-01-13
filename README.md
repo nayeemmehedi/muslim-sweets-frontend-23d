@@ -9,3 +9,5 @@ clsx lekhar system:
 syntext:
 
   className={clsx ( "classname" ,{ "classname": conditions })}
+
+  1.hooks are not allowed in server components

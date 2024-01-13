@@ -2,6 +2,8 @@ import LottieReact from "../../utls/LottieReact.js";
 import read from "../../..//public/illustration/read.json";
 import FormSignUp from "./Form";
 
+import dynamic from "next/dynamic";
+
 const SignUp: React.FC = () => {
 
 
@@ -22,5 +24,7 @@ const SignUp: React.FC = () => {
     </div>
   );
 };
+export default dynamic (() => Promise.resolve(SignUp), {ssr: false})
 
-export default SignUp;
+
+// export  {SignUp};

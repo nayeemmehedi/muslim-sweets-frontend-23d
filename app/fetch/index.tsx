@@ -1,14 +1,34 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+class responseValue{
+
+  value: any;
+  loading: any;
+  error: any;
+  success: any;
+
+  constructor(value:any,loading:any,success:any,error:any){
+    this.value = value;
+    this.loading = loading;
+    this.success = success;
+    this.error = error;
+  }
+}
+
+
+
+
+
 const apiValue = axios.create({
   baseURL: "http://localhost:4500/api/v1", // Replace with your apiValue base URL
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": 'multipart/form-data',
   },
 });
 
 const my_access_token = Cookies.get("accessToken");
+console.log("my access token",my_access_token)
 // const my_refresh_token = Cookies.get('refreshToken');
 
 // Request interceptor
@@ -60,10 +80,28 @@ async function refreshAccessToken() {
   }
 }
 
-export const authService = {
-  login: () => apiValue.get(`/signup1`),
-  // logout: () => axios.post(`${BASE_URL}/logout`),
-  // ... other auth-related methods
+
+const fetchData = async () => {
+  try {
+    const response = await apiValue.get('/endpoint'); // Make a GET request
+     return new responseValue({},true,true,false)
+  } catch (error) {
+    console.error('GET Request Error:', error);
+    return new responseValue({},true,false,true)
+
+  }
 };
 
-export {apiValue}
+const postData = async (value:any) => {
+
+  try {
+    const response = await apiValue.post('/signup', value); 
+    return new responseValue({},false,true,false)
+    
+  } catch (error) {
+    return new responseValue({},false,false,true)
+   
+  }
+};
+
+export {fetchData,postData}

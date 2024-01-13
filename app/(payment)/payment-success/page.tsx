@@ -12,9 +12,11 @@ function PaymentSuccess() {
 
       <div className="w-[50%] ml-auto mr-auto">
         <Image src={success} alt="error"></Image>
+        <div>
         <p className="text-2xl font-light my-5 text-center text-green-500">
           Succesfully Payment Done{" "}
         </p>
+        </div>
       </div>
     </div>
   );

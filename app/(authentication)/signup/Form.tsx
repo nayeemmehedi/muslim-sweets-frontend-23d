@@ -1,24 +1,55 @@
-"use client"
+"use client";
 import { Button, Checkbox, Form, Input, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import {ColorChange} from "../../utls/ColorChange"
+import { ColorChange } from "../../utls/ColorChange";
 import { Dancing_Script } from "next/font/google";
 import Link from "next/link";
+import { postData } from "@/app/fetch";
+import { useState } from "react";
+import {
+  initialresponse,
+  loading_true,
+  responValue,
+} from "@/app/extra/typescriptValue/Form_Typescript";
 
 const inter = Dancing_Script({ subsets: ["latin"] });
 
-const normFile = (e: any) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
-
 function FormSignUp() {
+  //state
   const [form] = Form.useForm();
+  const [responseGet, setResponseGet] = useState<responValue>(initialresponse);
 
-  const onFinish = (values: any) => {
+  //form response value
+  const onFinish = async (values: any) => {
+    setResponseGet(loading_true);
+
+    //form data start
+    const formDataToSend = new FormData();
+
+    for (const [key, value] of Object.entries(values)) {
+      if (key !== "imgUrl") formDataToSend.append(key, value);
+    }
+
+    formDataToSend.append("imgUrl", values.imgUrl.file.originFileObj);
+
+    formDataToSend.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
+
+    //form data finsih
+
+    //api call
+    const value = await postData(formDataToSend);
+    console.log("eij value", value);
+    // setResponseGet(value);
+
+    // console.log("//form data start", responseGet);
   };
+
+  // loading state
+  if (responseGet.loading) {
+    return "Loading...";
+  }
 
   return (
     <div className="my-10">
@@ -37,6 +68,7 @@ function FormSignUp() {
           //   style={{ maxWidth: 600 }}
           scrollToFirstError
           layout="vertical"
+          encType="multipart/form-data"
         >
           <Form.Item
             name="nickname"
@@ -85,7 +117,7 @@ function FormSignUp() {
 
           <Form.Item
             name="confirm"
-            label={<ColorChange >Confirm Password</ColorChange>}
+            label={<ColorChange>Confirm Password</ColorChange>}
             dependencies={["password"]}
             hasFeedback
             rules={[
@@ -112,10 +144,6 @@ function FormSignUp() {
             name="imgUrl"
             label={<ColorChange>Image Upload</ColorChange>}
             rules={[
-              {
-                type: "object",
-                message: "Image issues!",
-              },
               {
                 required: true,
                 message: "Please input Image!",
@@ -152,24 +180,24 @@ function FormSignUp() {
                 </ColorChange>
               }
             </Checkbox>
-
-            
           </Form.Item>
-         <div className="flex justify-between">
-         <Form.Item >
-            <Button
-              className="text-red-700 border border-red-500 hover:text-green-700 hover:border-green-700"
-              htmlType="submit"
+          <div className="flex justify-between">
+            <Form.Item>
+              <Button
+                className="text-red-700 border border-red-500 hover:text-green-700 hover:border-green-700"
+                htmlType="submit"
+              >
+                Register
+              </Button>
+            </Form.Item>
+            <Link
+              className="text-end text-xl text-red-700 underline "
+              href="/login"
             >
-              Register
-            </Button>
-
-          </Form.Item>
-          <Link className="text-end text-xl text-red-700 underline " href="/login"> Go to login now!</Link>
-          </div> 
-
-
-
+              {" "}
+              Go to login now!
+            </Link>
+          </div>
         </Form>
       </div>
     </div>

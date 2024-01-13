@@ -6,6 +6,7 @@ import ProductPayment from "./Product";
 import ModalProduct from "@/app/utls/modal/ModalProduct";
 import ModalEmail from "@/app/utls/modal/ModelEmail";
 import ModalPhone from "@/app/utls/modal/ModalPhone";
+import Link from "next/link";
 
 function page() {
   const [value, setValue] = useState(false);
@@ -124,9 +125,11 @@ function page() {
               </p>
               <hr className="my-3" />
 
-              <button className="border border-red-300 hover:border-red-900 px-3 py-2 w-full bg-amber-900 text-white">
+             <Link href="payment-option">
+             <button className="border border-red-300 hover:border-red-900 px-3 py-2 w-full bg-amber-900 text-white">
                 PLACE ORDER{" "}
               </button>
+             </Link>
             </div>
           </div>
         </div>

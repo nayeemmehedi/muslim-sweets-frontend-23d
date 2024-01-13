@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { Dancing_Script } from "next/font/google";
 import { ColorChange } from '@/app/utls/ColorChange';
 
-const inter = Dancing_Script({ subsets: ["latin"] });
 
 const FormLogin: React.FC = () => {
   const onFinish = (values: any) => {
@@ -63,7 +62,9 @@ const FormLogin: React.FC = () => {
         
       </Form.Item>
       <Link href="/signup">
-      <div className='text-amber-500'> Or register now! </div>
+      <div className='text-amber-500'>
+        <p> Or register now! </p>
+      </div>
       </Link>
      </div>
     </Form>
