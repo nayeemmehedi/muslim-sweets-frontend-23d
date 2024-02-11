@@ -4,13 +4,15 @@ import { PlusOutlined } from "@ant-design/icons";
 import { ColorChange } from "../../utls/ColorChange";
 import { Dancing_Script } from "next/font/google";
 import Link from "next/link";
-import { postData } from "@/app/fetch";
+// import { postData } from "@/app/fetch";
 import { useState } from "react";
 import {
   initialresponse,
   loading_true,
   responValue,
 } from "@/app/extra/typescriptValue/Form_Typescript";
+import clsx from "clsx";
+import { postDataSignup } from "@/app/fetch";
 
 const inter = Dancing_Script({ subsets: ["latin"] });
 
@@ -19,42 +21,62 @@ function FormSignUp() {
   const [form] = Form.useForm();
   const [responseGet, setResponseGet] = useState<responValue>(initialresponse);
 
+  // initialresponse
+
+  const [successValue, setSuccess] = useState({
+    success: false,
+    message:'',
+    error: false,
+  });
+
   //form response value
   const onFinish = async (values: any) => {
     setResponseGet(loading_true);
 
-    //form data start
     const formDataToSend = new FormData();
 
     for (const [key, value] of Object.entries(values)) {
       if (key !== "imgUrl") formDataToSend.append(key, value);
     }
 
-    formDataToSend.append("imgUrl", values.imgUrl.file.originFileObj);
+    formDataToSend.append("imgUrl", values.imgUrl.file.originFileObj)
 
-    formDataToSend.forEach((value, key) => {
-      console.log(`${key}:`, value);
-    });
+
+    // formDataToSend.forEach((value, key) => {
+    //   console.log(`${key}:`, value);
+    // });
 
     //form data finsih
 
     //api call
-    const value = await postData(formDataToSend);
-    console.log("eij value", value);
-    // setResponseGet(value);
+    let value:any = await postDataSignup(formDataToSend);
 
-    // console.log("//form data start", responseGet);
+    console.log("value sigup",value)
+
+    if (value.success) {
+
+      setResponseGet(initialresponse)
+      setSuccess({
+        success: true,
+        message: value.message,
+        error: false,
+      });
+    } else {
+      setResponseGet(initialresponse)
+      setSuccess({
+        success: false,
+        message: value.message,
+        error: true,
+
+      });
+    }
   };
-
-  // loading state
-  if (responseGet.loading) {
-    return "Loading...";
-  }
 
   return (
     <div className="my-10">
       <div className={inter.className}>
         <p className="text-center text-4xl font-bold text-red-600 my-4">
+          {" "}
           Sign Up Form
         </p>
       </div>
@@ -71,7 +93,7 @@ function FormSignUp() {
           encType="multipart/form-data"
         >
           <Form.Item
-            name="nickname"
+            name="username"
             label={<span className="signupTextColor">Nickname</span>}
             tooltip="What do you want others to call you?"
             rules={[
@@ -182,12 +204,12 @@ function FormSignUp() {
             </Checkbox>
           </Form.Item>
           <div className="flex justify-between">
-            <Form.Item>
+         <Form.Item>
               <Button
-                className="text-red-700 border border-red-500 hover:text-green-700 hover:border-green-700"
+                className={clsx("text-red-700 border border-red-500 hover:text-green-700 hover:border-green-700",{"pointer-events-none animate-spin": responseGet.loading})}
                 htmlType="submit"
               >
-                Register
+               {responseGet.loading?"Processing...": "Register"}
               </Button>
             </Form.Item>
             <Link
@@ -199,6 +221,20 @@ function FormSignUp() {
             </Link>
           </div>
         </Form>
+      </div>
+
+      <div>
+        {successValue.success && !successValue.error ? (
+          <p className="text-green-700 font-bold text-3xl">
+            SuccessFully SignUp & Go to Login
+          </p>
+        ) : !successValue.success && successValue.error ? (
+          <p className="text-red-700 font-bold text-3xl">
+           { "SignUp Failed .Try Again"  || successValue?.message }
+          </p>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -18,6 +18,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const admin= true
+
+
+
   return (
     <html lang="en">
       <body className={inter.className}>

@@ -1,32 +1,37 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
+import Cookies from 'js-cookie';
 
-
-
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
 
-//     cookies.set('auth', 'Pacman');
-// cookies.set('auths', undefined);
+    console.log("dhukse")
+    const path = request.nextUrl.pathname
 
+    const isPublicPath = path == "/login" || path == "/signup"
 
     // console.log(request.nextUrl.pathname.startsWith('/login'))
-    const auth = cookies.get('auths')
+    const auth = Cookies.get('accessToken')
 
-    if (!auth) {
+    console.log("isPublicPath", isPublicPath)
+    console.log("auth", auth)
 
-        return NextResponse.redirect(new URL('/login', request.url))
-    } else {
-         return NextResponse.next()
+    // auth && isPublicPath
+
+    if (auth && isPublicPath) {
+        return NextResponse.redirect(new URL('/', request.url))
     }
 
 
-    //   return NextResponse.redirect(new URL('/home', request.url))
+    if (!auth && !isPublicPath) {
+
+        return NextResponse.redirect(new URL('/login', request.url))
+    }
+
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
     matcher: [],
+
+    // matcher: ["/payment-option", "/payment-success", "/confirm-product", "/card" ,"/aboutUs"],
     // '/signup',"/payment-success"
 }

@@ -20,13 +20,20 @@ class responseValue{
 
 
 
-const apiValue = axios.create({
+export const apiValue = axios.create({
+  baseURL: "http://localhost:4500/api/v1", // Replace with your apiValue base URL
+  headers: {
+    // "Content-Type": 'multipart/form-data',
+    "Content-Type": 'application/json'
+  },
+});
+const apiValue2 = axios.create({
   baseURL: "http://localhost:4500/api/v1", // Replace with your apiValue base URL
   headers: {
     "Content-Type": 'multipart/form-data',
+    // "Content-Type": 'application/json'
   },
 });
-
 const my_access_token = Cookies.get("accessToken");
 console.log("my access token",my_access_token)
 // const my_refresh_token = Cookies.get('refreshToken');
@@ -92,11 +99,13 @@ const fetchData = async () => {
   }
 };
 
-const postData = async (value:any) => {
+const postDataSignup = async (value:any) => {
 
   try {
-    const response = await apiValue.post('/signup', value); 
-    return new responseValue({},false,true,false)
+    const response:any = await apiValue2.post('/signup', value); 
+    console.log("response data",response.data)
+    
+    return response.data
     
   } catch (error) {
     return new responseValue({},false,false,true)
@@ -104,4 +113,21 @@ const postData = async (value:any) => {
   }
 };
 
-export {fetchData,postData}
+
+const postDataLogin = async (value:any) => {  
+
+  try {
+    const response:any = await apiValue.post('/login', value); 
+    console.log("response data",response.data)
+    
+    return response.data
+    
+  } catch (error) {
+    return new responseValue({
+      error: error
+    },false,false,true)
+   
+  }
+};
+
+export {fetchData,postDataSignup,postDataLogin}

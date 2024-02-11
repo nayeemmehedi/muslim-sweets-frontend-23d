@@ -7,7 +7,7 @@ const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
 function PatisserieProduct() {
   return (
     <div className={dancing_Script.className}>
-      <div className="pt-5 bg-[#9D8F8F]">
+      <div className="pt-5">
         <p className="text-3xl text-white text-center">
           WELCOME <span className="text-red-800">TO</span> MUSLIM SWEETS
           <br />
