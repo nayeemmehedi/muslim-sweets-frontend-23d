@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 
 export async function middleware(request: NextRequest) {
 
-    console.log("dhukse")
     const path = request.nextUrl.pathname
 
     const isPublicPath = path == "/login" || path == "/signup"
@@ -11,8 +10,6 @@ export async function middleware(request: NextRequest) {
     // console.log(request.nextUrl.pathname.startsWith('/login'))
     const auth = Cookies.get('accessToken')
 
-    console.log("isPublicPath", isPublicPath)
-    console.log("auth", auth)
 
     // auth && isPublicPath
 

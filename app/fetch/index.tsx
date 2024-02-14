@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-class responseValue{
+export class responseValue{
 
   value: any;
   loading: any;

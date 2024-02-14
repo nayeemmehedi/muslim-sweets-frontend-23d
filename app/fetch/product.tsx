@@ -1,12 +1,25 @@
-async function getData() {
-    const res = await fetch('https://localhost:3030/...')
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-   
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data')
-    }
-   
-    return res.json()
+import { apiValue, responseValue } from ".";
+
+const productAll = async () => {
+  try {
+    const response: any = await apiValue.get("/product");
+
+    return response.data;
+  } catch (error) {
+    return null
   }
+};
+
+const productId = async (id:String) => {
+  try {
+    const response: any = await apiValue.get("/product/"+id);
+    console.log("response data", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return null
+  }
+};
+
+export { productAll,productId };

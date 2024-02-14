@@ -27,3 +27,34 @@ export const imagesSlide = [
       "There is nothing more significant than love and chocolate. They make a truly winning combination.",
   },
 ];
+
+
+ export  const productAllFake = [
+    {
+      image: "/chomchom.jpg",
+      name: "Chomchom",
+      banglaName: "কাটারী ভোগ",
+      price: 40,
+      rating: 4,
+      available: "Unavailable",
+      availableTime: "6AM-12PM",
+    },
+    {
+      image: "/chomchom.jpg",
+      name: "Chomchom",
+      banglaName: "কাটারী ভোগ",
+      price: 40,
+      rating: 4,
+      available: "Unavailable",
+      availableTime: "6AM-12PM",
+    },
+    {
+      image: "/chomchom.jpg",
+      name: "Chomchom",
+      banglaName: "কাটারী ভোগ",
+      price: 40,
+      rating: 4,
+      available: "Unavailable",
+      availableTime: "6AM-12PM",
+    },
+  ];

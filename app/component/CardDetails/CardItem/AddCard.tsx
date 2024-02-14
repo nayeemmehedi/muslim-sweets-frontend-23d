@@ -49,7 +49,6 @@ const AddCard: React.FC<MyComponentProps> = ({ value }) => {
   }, [checked]);
 
   const onChangeValue = (value: number | null): void => {
-    console.log("changed", value);
   };
 
   return (
