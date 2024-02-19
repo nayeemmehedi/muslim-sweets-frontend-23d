@@ -12,8 +12,8 @@ async function Toprate() {
       {product?.data?.value
         ?.sort((a: any, b: any): any => b.rating - a.rating)
         .slice(0, 3)
-        .map((p: any) => (
-          <div className="rounded-md shadow-md border hover:shadow-xl hover:border-red-950 hover:bg-teal-950 my-4 max-w-40 max-h-40 flex hover:text-stone-100">
+        .map((p: any,i:any) => (
+          <div key={i} className="rounded-md shadow-md border hover:shadow-xl hover:border-red-950 hover:bg-teal-950 my-4 max-w-40 max-h-40 flex hover:text-stone-100">
             <Image
               className="rounded-md"
               src={p.imgUrl}

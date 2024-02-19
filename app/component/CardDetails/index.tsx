@@ -1,8 +1,11 @@
 import React from "react";
 import AddCard from "./CardItem/AddCard";
 import OderSummery from "./CardItem/OderSummery";
+import { useDispatch } from "react-redux";
 
-function index() {
+function index({cardValue}:any) {
+
+ 
   const card = {
     image: "/public/chomchom.jpg",
     name: "Chomchom",
@@ -18,10 +21,10 @@ function index() {
       <div className="w-[95%] ml-auto mr-auto">
         <div className="grid grid-cols-3">
           <div className="col-span-2">
-            <AddCard value={card}></AddCard>
+            <AddCard value={cardValue}></AddCard>
           </div>
           <div className="">
-            <OderSummery></OderSummery>
+            <OderSummery value={cardValue}></OderSummery>
           </div>
         </div>
       </div>

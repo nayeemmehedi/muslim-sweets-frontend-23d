@@ -7,9 +7,19 @@ import ModalProduct from "@/app/utls/modal/ModalProduct";
 import ModalEmail from "@/app/utls/modal/ModelEmail";
 import ModalPhone from "@/app/utls/modal/ModalPhone";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/StateManagement/store";
+
 
 function page() {
   const [value, setValue] = useState(false);
+
+  const  order = useSelector((state: RootState) => state.counter.order);
+
+  console.log("Order: " + order)
+
+  
+
 
   let serviceDetails = [
     { name: "Items Total", tk: 169 },
@@ -51,7 +61,7 @@ function page() {
       <div className="grid grid-cols-5 w-[90%] ml-auto mr-auto">
         <div className="col-span-3 mt-5">
           <div className="mx-8 my-3  p-6 bg-white shadow">
-            <p className="font-bold">Deliver to: nayeem</p>
+            <p className="font-bold">Deliver to: nayeem mehedi</p>
             <p className="font-light my-2">
               Address: Dhaka{" "}
               <span
@@ -108,7 +118,7 @@ function page() {
               <div className="my-4">
                 {serviceDetails.map((v, item): any => {
                   return (
-                    <div
+                    <div key={item}
                       className={clsx("flex justify-between text-xs", {
                         "text-lg font-bold my-5": v.name == "Total Payment",
                       })}

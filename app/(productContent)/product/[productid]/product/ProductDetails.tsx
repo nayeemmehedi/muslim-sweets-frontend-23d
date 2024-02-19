@@ -6,7 +6,7 @@ async function ProductDetails({ id }: any) {
   const product = await productId(id);
   let productDetails = product.data.value[0];
 
-  console.log("saepected product", productDetails);
+  // console.log("saepected product", productDetails);
 
   return (
     <div>

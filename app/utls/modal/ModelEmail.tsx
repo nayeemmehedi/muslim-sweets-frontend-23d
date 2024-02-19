@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Modal } from "antd";
+import { productAndLocation } from "@/app/StateManagement/counterSlice";
+import { useDispatch } from "react-redux";
 
 interface MyComponentProps {
   modal: boolean;
@@ -7,6 +9,7 @@ interface MyComponentProps {
 }
 const ModalEmail: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -17,11 +20,12 @@ const ModalEmail: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
           form
             .validateFields()
             .then((values) => {
+              dispatch(productAndLocation(values));
+
               form.resetFields();
               toggleModal;
             })
-            .catch((info) => {
-            });
+            .catch((info) => {});
         }}
         onCancel={toggleModal}
       >

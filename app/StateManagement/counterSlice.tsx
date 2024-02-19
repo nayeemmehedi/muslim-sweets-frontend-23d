@@ -1,37 +1,50 @@
-"use client";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-
-export interface CounterState {
-  value: number;
+interface CounterState {
+  value: any[];
+  order: {};
 }
 
 const initialState: CounterState = {
-  value: 0,
+  value: [],
+  order: {},
 };
 
 export const counterSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
+    productRedux: (state, action: PayloadAction<any>) => {
+      const existingProductIndex = state.value.findIndex(
+        (item) => item.englishName === action.payload.englishName
+      );
+
+      if (existingProductIndex !== -1) {
+        // If the product already exists, update its quantity
+        state.value[existingProductIndex].qty += action.payload.qty;
+      } else {
+        // If the product doesn't exist, add it to the array
+        state.value.push(action.payload);
+      }
     },
-    decrement: (state) => {
-      state.value -= 1;
+    productDeleteRedux: (state, action: PayloadAction<any>) => {
+      const newValue = state.value.filter(
+        (item) => item.englishName !== action.payload.englishName
+      );
+
+      console.log("newValue", newValue);
+
+      state.value = newValue;
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    productAndLocation: (state, action: PayloadAction<any>) => {
+      let value = state.value
+      state.order = { ...value,...action.payload  };
+      console.log(state.order)
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { productRedux, productDeleteRedux,productAndLocation } = counterSlice.actions;
 
 export default counterSlice.reducer;

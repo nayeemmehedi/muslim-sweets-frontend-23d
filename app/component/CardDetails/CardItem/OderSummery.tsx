@@ -1,11 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Input, Space } from "antd";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/StateManagement/store";
 
-function OderSummery() {
-  const [passwordVisible, setPasswordVisible] = React.useState(false);
+function OderSummery({ value }: any) {
+  const [price, setPrice] = React.useState(0);
+
+  const cardValue = useSelector((state: RootState) => state.counter.value);
+
+
+  useEffect(() => {
+    if (cardValue.length > 0) {
+      let allprice = cardValue.map((v,item) => v.price * v.qty);
+      const sum = allprice.reduce((acc, curr) => acc + curr, 0);
+      setPrice(sum);
+    }
+  
+  }, [])
+  
   return (
     <div>
       <div className="m-4 p-4 bg-white">
@@ -13,12 +28,12 @@ function OderSummery() {
           <p className="text-2xl py-3">Order Summary</p>
           <hr />
           <div className="flex justify-between py-3">
-            <p> Subtotal (8 items)</p>
-            <p>৳ 924</p>
+            <p> Subtotal ({cardValue?.length} items)</p>
+            <p>৳ {price}</p>
           </div>
           <div className="flex justify-between py-3">
             <p>Shipping Fee</p>
-            <p>৳ 138</p>
+            <p>৳ 100</p>
           </div>
 
           <hr />
@@ -32,13 +47,13 @@ function OderSummery() {
 
           <div className="flex justify-between py-3">
             <p>Total</p>
-            <p className="text-orange-300">৳ 1,062</p>
+            <p className="text-orange-300">৳ {price + 100}</p>
           </div>
           <div className="my-4">
             <Link href="confirm-product">
-            <button className="w-full py-2 border  border-red-500 text-red-400 hover:text-blue-600">
-              PROCEED TO CHECKOUT
-            </button>
+              <button className="w-full py-2 border  border-red-500 text-red-400 hover:text-blue-600">
+                PROCEED TO CHECKOUT
+              </button>
             </Link>
           </div>
         </div>

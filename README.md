@@ -11,3 +11,6 @@ syntext:
   className={clsx ( "classname" ,{ "classname": conditions })}
 
   1.hooks are not allowed in server components
+  2.nodemon run
+  3.npm run dev
+  

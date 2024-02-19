@@ -1,51 +1,57 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Button,
-  Cascader,
-  DatePicker,
-  Form,
-  Input,
-  InputNumber,
-  Mentions,
-  Select,
-  TreeSelect,
-} from "antd";
+import { Button, Form, InputNumber } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../StateManagement/store";
+import { useRouter } from "next/navigation";
+import { productRedux } from "../StateManagement/counterSlice";
+import clsx from "clsx";
 
 function ProductDetailButton({ productDetails }: any) {
-  const [number, setnumber] = useState(1);
-
-  const onChange = (value: any): any => {
-    setnumber(value);
-  };
-
-  const count = useSelector((state: RootState) => state.counter.value);
+  const [number, setnumber] = useState<any>(false);
+  const router = useRouter();
   const dispatch = useDispatch();
 
-  const GotoCard = () => {
-    if (number === null) {
-      setnumber(1);
-    }
-    console.log("dekhi ki", number);
+  let onFinish = (values: any) => {
+    setnumber(true);
+
+    const value = values.InputNumber;
+    const name = {
+      banglaName: productDetails.banglaName,
+      englishName: productDetails.englishName,
+      imgUrl: productDetails.imgUrl,
+      rating: productDetails.rating,
+      price: productDetails.price,
+      qty: value,
+    };
+
+    let product = { ...name };
+
+    dispatch(productRedux(product));
+
+    setnumber(false);
+
+    router.push("/card");
   };
 
   return (
     <div className="py-5">
-      <Form layout="vertical">
+      <Form layout="vertical" onFinish={onFinish}>
         <Form.Item
           label="Qty"
           name="InputNumber"
           rules={[{ required: true, message: "Please input!" }]}
         >
-          <InputNumber min={1} max={20} defaultValue={1} onChange={onChange} />
+          <InputNumber min={1} max={20} />
         </Form.Item>
 
         <Form.Item label=" ">
           <Button
-            className="text-white border border-green-700 bg-amber-700 w-[40%] py-5 flex justify-center items-center"
+            className={clsx(
+              "text-white border border-green-700 bg-amber-700 w-[40%] py-5 flex justify-center items-center",
+              { "cursor-not-allowed": number }
+            )}
             htmlType="submit"
             // onClick={goToCard}
           >

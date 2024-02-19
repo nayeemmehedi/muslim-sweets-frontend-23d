@@ -13,8 +13,8 @@ async function MainProduct() {
       <div className="grid grid-cols-3 gap-8 mx-10 my-6">
         {product ? (
           <div>
-            {product?.data?.value.map((p: any) => (
-              <div className="shadow-lg hover:shadow-2xl rounded-md  ">
+            {product?.data?.value.map((p: any,item:any) => (
+              <div key={item} className="shadow-lg hover:shadow-2xl rounded-md  ">
                 <Image
                   className=" rounded-md "
                   src={p.imgUrl}
@@ -42,8 +42,8 @@ async function MainProduct() {
           </div>
         ) : (
           <>
-            {productAllFake?.map((p: any) => (
-              <div className="shadow-lg hover:shadow-2xl rounded-md ">
+            {productAllFake?.map((p: any,item:any) => (
+              <div key={item} className="shadow-lg hover:shadow-2xl rounded-md ">
                 <Image
                   className=" rounded-md "
                   src={p.image}

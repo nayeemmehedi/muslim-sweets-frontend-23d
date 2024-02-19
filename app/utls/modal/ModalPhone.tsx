@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {  Form, Input, Modal,Select  } from "antd";
+import { productAndLocation } from "@/app/StateManagement/counterSlice";
+import { useDispatch } from "react-redux";
 
 interface MyComponentProps {
   modal: boolean;
@@ -20,6 +22,9 @@ const prefixSelector = (
 const ModalPhone: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
   const [form] = Form.useForm();
 
+  const dispatch = useDispatch()
+
+
   return (
     <>
       <Modal
@@ -29,6 +34,7 @@ const ModalPhone: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
           form
             .validateFields()
             .then((values) => {
+              dispatch(productAndLocation(values))
               form.resetFields();
               toggleModal;
             })
