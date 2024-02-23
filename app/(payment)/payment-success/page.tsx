@@ -14,8 +14,9 @@ function PaymentSuccess() {
         <Image src={success} alt="error"></Image>
         <div>
         <p className="text-2xl font-light my-5 text-center text-green-500">
-          Succesfully Payment Done{" "}
+          Succesfully  Oder Confirm{" "}
         </p>
+        <p className="text-green-900 text-center py-3">Please ready when our rider reach u.</p>
         </div>
       </div>
     </div>

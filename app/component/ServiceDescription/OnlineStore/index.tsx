@@ -1,6 +1,8 @@
 import React from "react";
 import { Dancing_Script } from "next/font/google";
 import { BsArrowRightCircleFill } from "react-icons/bs";
+import { productAll } from "@/app/fetch/product";
+import Link from "next/link";
 
 const inter = Dancing_Script({ subsets: ["latin"], weight: "400" });
 
@@ -38,7 +40,9 @@ const value = [
   },
 ];
 
-function OnlineStore() {
+async function OnlineStore() {
+  const product = await productAll();
+
   return (
     <div className={inter.className}>
       <div className="text-white">
@@ -53,30 +57,28 @@ function OnlineStore() {
         </div>
 
         <div className="flex justify-between w-[80%] ml-auto mr-auto">
-          {value?.map((v, key) => (
+          {product?.data?.value?.slice(0, 4)?.map((v: any, key: any) => (
             <div key={key}>
-              <img src={v.img} className="w-[200px] h-[200px]" alt="" />
-              <h1 className="my-3">{v.name}</h1>
-              <p>
-                Price: <span className="text-orange-200">{v.price} {v.money}</span>{" "} {"->"}
-                {v.avaiable ? "Available" : "Unavbilable"}
-              </p>
+              <img src={v?.imgUrl} className="w-[200px] h-[200px]" alt="" />
+              <h1 className="my-3">{v?.englishName}/{v?.banglaName}</h1>
+
               <p>
                 Available Time:{" "}
-                <span className="text-3xl text-amber-400 ">
-                  {v?.Available_Time ? v?.Available_Time : "Enjoy NOW"}
-                </span>
+                <span className="text-3xl text-amber-400 ">Enjoy NOW</span>
               </p>
+              <p>Price: {v?.price} tk</p>
             </div>
           ))}
         </div>
 
         <div className="text-center mt-20">
-          <button className="text-4xl border p-5 rounded-3xl border-amber-400 text-amber-400 hover:border-white  hover:text-white">
+         <Link href="/product">
+         <button className="text-4xl border p-5 rounded-3xl border-amber-400 text-amber-400 hover:border-white  hover:text-white">
             <span className="flex">
               Online Store <BsArrowRightCircleFill className="ms-2" />
             </span>
           </button>
+         </Link>
         </div>
       </div>
     </div>

@@ -37,7 +37,7 @@ export const counterSlice = createSlice({
       state.value = newValue;
     },
     productAndLocation: (state, action: PayloadAction<any>) => {
-      let value = state.value
+      let value = state.order
       state.order = { ...value,...action.payload  };
       console.log(state.order)
     },

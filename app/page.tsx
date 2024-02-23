@@ -2,7 +2,8 @@ import MainComponent from "./component/MainComponent";
 
 async function page() {
   return (
-    <div className="bg-[#14100b]">
+    // bg-[#14100b] 
+    <div className="backgroundColorMain">
       <MainComponent></MainComponent>
     </div>
   );

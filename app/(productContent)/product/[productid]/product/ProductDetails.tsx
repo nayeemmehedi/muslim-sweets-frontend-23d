@@ -6,7 +6,7 @@ async function ProductDetails({ id }: any) {
   const product = await productId(id);
   let productDetails = product.data.value[0];
 
-  // console.log("saepected product", productDetails);
+  console.log("saepected product", productDetails);
 
   return (
     <div>
@@ -28,9 +28,8 @@ async function ProductDetails({ id }: any) {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
@@ -50,6 +49,7 @@ async function ProductDetails({ id }: any) {
                           width={400}
                           height={400}
                           alt="Picture"
+                          style={{maxHeight:"320px"}}
                         />
                       </div>
                     </div>

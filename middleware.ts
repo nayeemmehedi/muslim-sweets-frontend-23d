@@ -22,13 +22,14 @@ export async function middleware(request: NextRequest) {
 
         return NextResponse.redirect(new URL('/login', request.url))
     }
-
+    
+   
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-    matcher: [],
+    // matcher: [],
 
-    // matcher: ["/payment-option", "/payment-success", "/confirm-product", "/card" ,"/aboutUs"],
+    matcher: ["/payment-option", "/payment-success", "/confirm-product"],
     // '/signup',"/payment-success"
 }

@@ -18,7 +18,7 @@ function PatisserieProduct() {
 
       <div className="">
         <div className="relative ">
-          <div className="body1 bg-[#14100b] ">
+          <div className="body1 backgroundColorMain ">
             <div className="blurred-image-container ">
               <img
                 className="blurred-image"

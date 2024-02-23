@@ -7,7 +7,7 @@ function page({ params }: any) {
   return (
     <div>
       <ProductDetails id={params?.productid}></ProductDetails>
-      <Rating></Rating>
+      <Rating id={params?.productid}></Rating>
     </div>
   );
 }

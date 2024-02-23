@@ -37,8 +37,9 @@ function navResponsive() {
   return (
     // 14100b
     // bg-[#14100b]
+    // bg-neutral-950 
     <div>
-      <div className=" bg-neutral-950 antialiased">
+      <div className=" backgroundColorMain antialiased">
         <div className="">
           <div className=" text-white">
             <div className="flex justify-between items-center w-[92%]  mx-auto">
@@ -46,7 +47,7 @@ function navResponsive() {
                 <div className={dancing_Script.className}>
                   <div className="py-4 ">
                     <div className="flex flex-row">
-                      <p className="font-thin text-2xl">Muslim Sweets</p>
+                      <div className="font-thin text-2xl">Muslim Sweets</div>
                       <div>
                         {" "}
                         <GiWrappedSweet className="text-amber-400"></GiWrappedSweet>
@@ -69,13 +70,13 @@ function navResponsive() {
                 <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
                   {NavValue?.map((nav, i) => (
                     <li key={i}>
-                      <a className="hover:text-gray-500" href="#">
+                      {/* <a className="hover:text-gray-500" href="#"> */}
                         <Link href={nav.link}> {nav.name}</Link>
 
                         <span className="text-xs font-thin text-amber-400 hover:text-red-600">
                           +
                         </span>
-                      </a>
+                      {/* </a> */}
                     </li>
                   ))}
                 </ul>

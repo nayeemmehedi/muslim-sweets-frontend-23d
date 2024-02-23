@@ -9,22 +9,23 @@ export const imagesSlide = [
     content_h1: "মিষ্টি কিনতে চাও..",
     content_h2: "চলে আসো  লোহাগড়া নড়াইল",
     content_p:
-      "There is nothing more significant than love and chocolate. They make a truly winning combination.",
+    "পারফেক্ট মিষ্টি তৈরির জন্য দুধ, চিনি, ঘি, গুড়, নারিকেল ও ডালের ব্যবহার হয়।"
   },
   {
     pic: sweets_good,
 
     content_h1: "আমাদের পণ্য ১০০% শুদ্ধ",
-    content_h2: "Contact No : 01916108472",
+    content_h2: "যোগাযোগ নম্বর: ০১৭৪০১৪৭৯৪৫",
     content_p:
-      "There is nothing more significant than love and chocolate. They make a truly winning combination.",
+    "বাংলাদেশের মিষ্টির সৌন্দর্য ও স্বাদের সাথে মিলে রয়েছে ঐতিহাসিক ঐতিহ্য",
+     
   },
   {
     pic: sweets_normal,
-    content_h1: "",
-    content_h2: "Lohagora,Narail,Bangladesh",
+    content_h1: "সন্দেশ, রসগোল্লা, চমচম, রসমালাই এবং মিষ্টি দাহি",
+    content_h2: "স্বাস্থ্যকর, তাজা এবং প্রকৃতিগত",
     content_p:
-      "There is nothing more significant than love and chocolate. They make a truly winning combination.",
+      "আমাদের দোকানে বাংলাদেশী মিষ্টির বিখ্যাত স্বাদ অভিজ্ঞ করুন।"
   },
 ];
 

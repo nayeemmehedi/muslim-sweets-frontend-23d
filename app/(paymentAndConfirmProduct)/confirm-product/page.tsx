@@ -10,33 +10,11 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/StateManagement/store";
 
-
 function page() {
-  const [value, setValue] = useState(false);
+  const [price, setPrice] = React.useState(0);
 
-  const  order = useSelector((state: RootState) => state.counter.order);
-
-  console.log("Order: " + order)
-
-  
-
-
-  let serviceDetails = [
-    { name: "Items Total", tk: 169 },
-    { name: "Delivery Fee", tk: 169 },
-    { name: "Delivery Discount", tk: 169 },
-    { name: "Total Payment", tk: 169 },
-  ];
-
-  const card = {
-    image: "/public/chomchom.jpg",
-    name: "Chomchom",
-    banglaName: "কাটারী ভোগ",
-    price: 40,
-    rating: 4,
-    available: "Unavailable",
-    availableTime: "6AM-12PM",
-  };
+  const order = useSelector((state: RootState) => state.counter.order);
+  const product = useSelector((state: RootState) => state.counter.value);
 
   const [ModalOpen, setModalOpen] = useState(false);
   const toggleModal = (): any => setModalOpen(!ModalOpen);
@@ -46,6 +24,24 @@ function page() {
 
   const [ModalOpenPhone, setModalOpenPhone] = useState(false);
   const toggleModalPhone = (): any => setModalOpenPhone(!ModalOpenPhone);
+
+  useEffect(() => {
+    if (product.length > 0) {
+      let allprice = product.map((v, item) => v.price * v.qty);
+      const sum = allprice.reduce((acc, curr) => acc + curr, 0);
+      setPrice(sum);
+    }
+  }, []);
+
+  let serviceDetails = [
+
+    { name: "Items Total", value: product?.length },
+    { name: "Delivery Fee", value: price ? 100 : 0 },
+    { name: "Delivery Discount", value: "no" },
+    { name: "Total Payment", value: price ? price + 100 : 0 },
+  ];
+
+  // 01318312972 
 
   return (
     <div className="bg-zinc-200 ">
@@ -84,7 +80,7 @@ function page() {
 
             <p className="font-light my-2">
               {" "}
-              Phone : 01756564463{" "}
+              Phone : 017565{" "}
               <span
                 onClick={() => toggleModalPhone()}
                 className="underline text-blue-500"
@@ -95,7 +91,7 @@ function page() {
           </div>
 
           <div>
-            <ProductPayment value={card}></ProductPayment>
+            <ProductPayment value={product}></ProductPayment>
           </div>
         </div>
 
@@ -118,13 +114,14 @@ function page() {
               <div className="my-4">
                 {serviceDetails.map((v, item): any => {
                   return (
-                    <div key={item}
+                    <div
+                      key={item}
                       className={clsx("flex justify-between text-xs", {
                         "text-lg font-bold my-5": v.name == "Total Payment",
                       })}
                     >
-                      <p className="">{v.name}</p>
-                      <p>৳ {v.tk}</p>
+                      <p className="">{v?.name}</p>
+                      <p> {v?.value}</p>
                     </div>
                   );
                 })}
@@ -135,11 +132,11 @@ function page() {
               </p>
               <hr className="my-3" />
 
-             <Link href="payment-option">
-             <button className="border border-red-300 hover:border-red-900 px-3 py-2 w-full bg-amber-900 text-white">
-                PLACE ORDER{" "}
-              </button>
-             </Link>
+              <Link href="payment-option">
+                <button className="border border-red-300 hover:border-red-900 px-3 py-2 w-full bg-amber-900 text-white">
+                  PLACE ORDER{" "}
+                </button>
+              </Link>
             </div>
           </div>
         </div>

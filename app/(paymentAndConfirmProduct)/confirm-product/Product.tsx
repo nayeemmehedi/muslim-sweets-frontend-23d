@@ -26,30 +26,37 @@ interface MyComponentProps {
   };
 }
 
-const ProductPayment: React.FC<MyComponentProps> = ({ value }) => {
+const ProductPayment: React.FC<any> = ({ value }) => {
   return (
     <div className={inter.className}>
-      <div className="mx-8 my-3  p-6 bg-white font-light">
-        <div className="grid grid-cols-5">
-          <div className="col-span-3 flex ">
-            <div>
-              <Image src={food} width={70} height={70} alt="not found"></Image>
-            </div>
-            <div className="ms-5 flex items-center">
+      {value?.map((value: any, i: any) => (
+        <div key={i} className="mx-8 my-3  p-6 bg-white font-light">
+          <div className="grid grid-cols-5">
+            <div className="col-span-3 flex ">
               <div>
-                <p className="">
-                  {value.name}-{value.banglaName}
-                </p>
+                <Image
+                  src={value?.imgUrl}
+                  width={70}
+                  height={70}
+                  alt="not found"
+                ></Image>
+              </div>
+              <div className="ms-5 flex items-center">
+                <div>
+                  <p className="">
+                    {value?.englishName}-{value?.banglaName}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-span-1 flex items-center">qt: 2</div>
+            <div className="col-span-1 flex items-center">qt: {value?.qty}</div>
 
-          <div className="col-span-1 flex items-center">
-            <p className="text-orange-600">Price: ৳ {value.price}</p>
+            <div className="col-span-1 flex items-center">
+              <p className="text-orange-600">Price: ৳ {value?.price}</p>
+            </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };

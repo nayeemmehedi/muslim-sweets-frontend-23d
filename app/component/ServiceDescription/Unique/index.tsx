@@ -22,8 +22,8 @@ function Unique() {
               <div className={dancing_Script.className}>
                  <div className="absolute inset-0 flex items-center justify-center">
                 <div className="  text-7xl text-center">
-                    <p className="text-black">Made with <span className="text-red-800">love</span> </p>
-                   <p className="text-[#411530]"> <span className="text-amber-400">unique</span> sweets for gourmet</p>
+                    <p className="text-green-950">Made with <span className="text-red-800">love</span> </p>
+                   <p className="text-green-950"> <span className="text-amber-400">unique</span> sweets for gourmet</p>
                 </div>
               </div>
               </div>
