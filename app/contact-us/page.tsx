@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import type { CascaderProps } from "antd";
 // import LottieReact from "@/utls/LottieReact.js";
 import LottieReact from "@/app/utls/LottieReact";
-import read from "/public/illustration/read.json";
+import read from "@/public/illustration/read.json";
 
 import {
   AutoComplete,

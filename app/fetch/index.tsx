@@ -21,14 +21,14 @@ export class responseValue{
 
 
 export const apiValue = axios.create({
-  baseURL: "http://localhost:4500/api/v1", // Replace with your apiValue base URL
+  baseURL: "https://muslim-sweets-backend.onrender.com/api/v1", // Replace with your apiValue base URL
   headers: {
     // "Content-Type": 'multipart/form-data',
     "Content-Type": 'application/json'
   },
 });
 const apiValue2 = axios.create({
-  baseURL: "http://localhost:4500/api/v1", // Replace with your apiValue base URL
+  baseURL: "https://muslim-sweets-backend.onrender.com/api/v1", // Replace with your apiValue base URL
   headers: {
     "Content-Type": 'multipart/form-data',
     // "Content-Type": 'application/json'
@@ -76,7 +76,7 @@ async function refreshAccessToken() {
   try {
     // Make a request to your authentication endpoint with the refresh token
     const response = await axios.get(
-      "http://localhost:3000/apiValue/v1/newGenerateAccessToken"
+      "https://muslim-sweets-backend.onrender.com/api/v1/newGenerateAccessToken"
     );
 
     // Update the access token with the new one

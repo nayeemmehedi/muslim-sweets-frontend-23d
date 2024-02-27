@@ -25,7 +25,7 @@ function FormSignUp() {
 
   const [successValue, setSuccess] = useState({
     success: false,
-    message:'',
+    message: "",
     error: false,
   });
 
@@ -36,11 +36,16 @@ function FormSignUp() {
     const formDataToSend = new FormData();
 
     for (const [key, value] of Object.entries(values)) {
-      if (key !== "imgUrl") formDataToSend.append(key, value);
+      console.log(`Key: ${key}, Value:`, value);
+      if (key !== "imgUrl") {
+        if (typeof value === 'string') {
+          formDataToSend.append(key, value);
+        } else if (value instanceof Blob) {
+          formDataToSend.append(key, value);
+        }
+      }
     }
-
-    formDataToSend.append("imgUrl", values.imgUrl.file.originFileObj)
-
+    formDataToSend.append("imgUrl", values.imgUrl.file.originFileObj);
 
     // formDataToSend.forEach((value, key) => {
     //   console.log(`${key}:`, value);
@@ -49,25 +54,27 @@ function FormSignUp() {
     //form data finsih
 
     //api call
-    let value:any = await postDataSignup(formDataToSend);
 
-    console.log("value sigup",value)
+    try {
+      let value: any = await postDataSignup(formDataToSend);
 
-    if (value.success) {
+      console.log("value sigup", value);
 
-      setResponseGet(initialresponse)
+      setResponseGet(initialresponse);
       setSuccess({
         success: true,
         message: value.message,
         error: false,
       });
-    } else {
-      setResponseGet(initialresponse)
+    } catch (error:any) {
+      console.log("errror", error);
+      console.log("errror", error.message);
+
+      setResponseGet(initialresponse);
       setSuccess({
         success: false,
-        message: value.message,
+        message: error.message,
         error: true,
-
       });
     }
   };
@@ -204,12 +211,15 @@ function FormSignUp() {
             </Checkbox>
           </Form.Item>
           <div className="flex justify-between">
-         <Form.Item>
+            <Form.Item>
               <Button
-                className={clsx("text-red-700 border border-red-500 hover:text-green-700 hover:border-green-700",{"pointer-events-none animate-spin": responseGet.loading})}
+                className={clsx(
+                  "text-red-700 border border-red-500 hover:text-green-700 hover:border-green-700",
+                  { "pointer-events-none animate-spin": responseGet.loading }
+                )}
                 htmlType="submit"
               >
-               {responseGet.loading?"Processing...": "Register"}
+                {responseGet.loading ? "Processing..." : "Register"}
               </Button>
             </Form.Item>
             <Link
@@ -230,7 +240,7 @@ function FormSignUp() {
           </p>
         ) : !successValue.success && successValue.error ? (
           <p className="text-red-700 font-bold text-3xl">
-           { "SignUp Failed .Try Again"  || successValue?.message }
+            {"SignUp Failed .Try Again" || successValue?.message}
           </p>
         ) : (
           ""
