@@ -29,7 +29,7 @@ export const counterSlice = createSlice({
     },
     productDeleteRedux: (state, action: PayloadAction<any>) => {
       const newValue = state.value.filter(
-        (item) => item.englishName !== action.payload.englishName
+        (item) => item.englishName !== action.payload
       );
 
       console.log("newValue", newValue);

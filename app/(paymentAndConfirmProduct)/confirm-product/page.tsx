@@ -9,9 +9,13 @@ import ModalPhone from "@/app/utls/modal/ModalPhone";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/StateManagement/store";
+import withAuth from "@/app/useAuth";
+import { useRouter } from "next/navigation";
+import { IoMdWarning } from "react-icons/io";
 
 function page() {
   const [price, setPrice] = React.useState(0);
+  const [status, setStatus] = React.useState(false);
 
   const order = useSelector((state: RootState) => state.counter.order);
   const product = useSelector((state: RootState) => state.counter.value);
@@ -25,6 +29,8 @@ function page() {
   const [ModalOpenPhone, setModalOpenPhone] = useState(false);
   const toggleModalPhone = (): any => setModalOpenPhone(!ModalOpenPhone);
 
+  const router = useRouter();
+
   useEffect(() => {
     if (product.length > 0) {
       let allprice = product.map((v, item) => v.price * v.qty);
@@ -34,23 +40,38 @@ function page() {
   }, []);
 
   let serviceDetails = [
-
     { name: "Items Total", value: product?.length },
     { name: "Delivery Fee", value: price ? 100 : 0 },
     { name: "Delivery Discount", value: "no" },
     { name: "Total Payment", value: price ? price + 100 : 0 },
   ];
 
-  // 01318312972 
+  
+const cardValue = useSelector((state: RootState) => state.counter.value);
+  const cardOrder = useSelector((state: RootState) => state.counter.order);
+
+ 
+
+  function placeOder() {
+    if (Object.keys(cardOrder).length === 0) {
+      setStatus(true);
+    } else {
+      setStatus(false);
+
+    
+
+      router.push("/payment-option");
+    }
+  }
 
   return (
     <div className="bg-zinc-200 ">
       {ModalOpen && (
         <ModalProduct modal={ModalOpen} toggleModal={toggleModal} />
       )}
-      {ModalOpenEmail && (
+      {/* {ModalOpenEmail && (
         <ModalEmail modal={ModalOpenEmail} toggleModal={toggleModalEmail} />
-      )}
+      )} */}
       {ModalOpenPhone && (
         <ModalPhone modal={ModalOpenPhone} toggleModal={toggleModalPhone} />
       )}
@@ -67,7 +88,7 @@ function page() {
                 edit
               </span>{" "}
             </p>
-            <p className="font-light my-2">
+            {/* <p className="font-light my-2">
               {" "}
               Email to : boyneel79@gmail.com{" "}
               <span
@@ -76,7 +97,7 @@ function page() {
               >
                 edit
               </span>
-            </p>
+            </p> */}
 
             <p className="font-light my-2">
               {" "}
@@ -132,11 +153,23 @@ function page() {
               </p>
               <hr className="my-3" />
 
-              <Link href="payment-option">
-                <button className="border border-red-300 hover:border-red-900 px-3 py-2 w-full bg-amber-900 text-white">
-                  PLACE ORDER{" "}
-                </button>
-              </Link>
+              <button
+                onClick={() => placeOder()}
+                className="border border-red-300 hover:border-red-900 px-3 py-2 w-full bg-amber-900 text-white"
+              >
+                PLACE ORDER{" "}
+              </button>
+              {status && (
+                <div>
+                  <div className="py-5 text-red-900 flex">
+                    {" "}
+                    <IoMdWarning style={{ fontSize: "20px" }} />{" "}
+                    <small>
+                      Please Add your Location and Personal Information
+                    </small>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

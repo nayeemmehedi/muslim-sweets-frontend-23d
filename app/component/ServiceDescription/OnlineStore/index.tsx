@@ -71,12 +71,12 @@ async function OnlineStore() {
           ))}
         </div>
 
-        <div className="text-center mt-20">
+        <div className="flex justify-center mt-20">
          <Link href="/product">
-         <button className="text-4xl border p-5 rounded-3xl border-amber-400 text-amber-400 hover:border-white  hover:text-white">
-            <span className="flex">
+         <button className="text-4xl border p-5 rounded-3xl border-amber-400 text-amber-400 hover:border-white  hover:text-white flex">
+            {/* <span className="flex"> */}
               Online Store <BsArrowRightCircleFill className="ms-2" />
-            </span>
+            {/* </span> */}
           </button>
          </Link>
         </div>

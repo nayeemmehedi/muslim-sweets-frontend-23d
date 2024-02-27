@@ -8,20 +8,23 @@ interface MyComponentProps {
   toggleModal: () => any;
 }
 
-const { Option } = Select;
+// const { Option } = Select;
 
-const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="88">+88</Option>
-      </Select>
-    </Form.Item>
-  );
+// const prefixSelector = (
+//     <Form.Item name="prefix" noStyle>
+//       <Select style={{ width: 70 }}>
+//         <Option value="88">+88</Option>
+//       </Select>
+//     </Form.Item>
+//   );
 
 const ModalPhone: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
   const [form] = Form.useForm();
 
   const dispatch = useDispatch()
+
+  // dispatch(productAndLocation(values))
+
 
 
   return (
@@ -51,9 +54,15 @@ const ModalPhone: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
            <Form.Item
         name="phone"
         label="Phone Number"
-        rules={[{ required: true, message: 'Please input your phone number!' }]}
+        rules={[
+          { required: true, message: 'Mobile number is required' },
+          {
+            pattern: /^(?:\+88|01)?(?:\d{11}|\d{13})$/,
+            message: 'Please enter a valid Bangladeshi mobile number',
+          },
+        ]}
       >
-        <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+        <Input style={{ width: '100%' }} />
       </Form.Item>
         </Form>
       </Modal>

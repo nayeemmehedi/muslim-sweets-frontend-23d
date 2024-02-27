@@ -8,118 +8,144 @@ import { Dancing_Script } from "next/font/google";
 import { ColorChange } from "@/app/utls/ColorChange";
 import { postDataLogin } from "@/app/fetch";
 import Cookies from "js-cookie";
-
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 
 const FormLogin: React.FC = () => {
+
+  const searchParams = useSearchParams()
+
+  const search = searchParams.get('search')
+
+  
+
+  const mainRouter = search ?? "/"
+
+  console.log("mainRouter", mainRouter)
+
+
   const [successValue, setLogin] = useState({
     success: false,
     loading: false,
     error: false,
   });
 
+  const router = useRouter();
+
   const onFinish = async (values: any) => {
+    try {
+      const value = await postDataLogin(values);
+      console.log("login", value);
 
-    const value = await postDataLogin(values);
+      Cookies.set("accessToken", value.data?.accessTokenValue);
+      Cookies.set("refreshToken", value.data?.refreshTokenValue);
 
-    console.log("ldddddddd",value.data?.accessTokenValue)
+      localStorage.setItem("accessToken", value.data?.accessTokenValue);
+      localStorage.setItem("refreshToken", value.data?.refreshTokenValue);
+      if (value.statusCode == 200) {
+        setLogin({
+          success: true,
+          loading: false,
+          error: false,
+        });
+        // redirect("/")
 
-     Cookies.set("accessToken",value.data?.accessTokenValue);
-     Cookies.set("refreshToken",value.data?.refreshTokenValue);
+        setTimeout(() => {
+          router.replace(mainRouter);
+        }, 2000);
+      } else {
+        setLogin({
+          success: false,
+          loading: false,
+          error: true,
+        });
+      }
+    } catch (error: any) {
+      console.log(error.message);
+      console.log(error);
 
-     localStorage.setItem('accessToken', value.data?.accessTokenValue);
-     localStorage.setItem("refreshToken",value.data?.refreshTokenValue);
-
-
-    if (value.success) {
-      setLogin({
-        success: true,
-        loading: false,
-        error: false,
-      });
-    } else {
-      setLogin({
-        success: false,
-        loading: false,
-        error: true,
-      });
+      alert("Error");
     }
   };
+
+  //  setTimeout(() => {
+  //   redirect("/")
+  //  }, 1000);
 
   return (
     <div>
       <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      layout="vertical"
-    >
-      <Form.Item
-        name="email"
-        label={<ColorChange>User Email</ColorChange>}
-        rules={[{ required: true, message: "Please input your Email!" }]}
+        name="normal_login"
+        className="login-form"
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        layout="vertical"
       >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="email"
-        />
-      </Form.Item>
-
-      <Form.Item
-        label={<ColorChange>Password</ColorChange>}
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Item>
-
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox className="text-white"> Remember me</Checkbox>
+        <Form.Item
+          name="email"
+          label={<ColorChange>User Email</ColorChange>}
+          rules={[{ required: true, message: "Please input your Email!" }]}
+        >
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="email"
+          />
         </Form.Item>
-      </Form.Item>
 
-      <div className="flex justify-between">
+        <Form.Item
+          label={<ColorChange>Password</ColorChange>}
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Item>
+
         <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-          >
-            Log in
-          </Button>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox className="text-white"> Remember me</Checkbox>
+          </Form.Item>
         </Form.Item>
-        <Link href="/signup">
-          <div className="text-amber-500">
-            <p> Or register now! </p>
-          </div>
-        </Link>
+
+        <div className="flex justify-between">
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
+              Log in
+            </Button>
+          </Form.Item>
+          <Link href="/signup">
+            <div className="text-amber-500">
+              <p> Or register now! </p>
+            </div>
+          </Link>
+        </div>
+      </Form>
+      <div>
+        <div>
+          {successValue.success && !successValue.error ? (
+            <p className="text-green-700 font-bold text-3xl">
+              SuccessFull DONE
+            </p>
+          ) : !successValue.success && successValue.error ? (
+            <p className="text-red-700 font-bold text-3xl">
+              {"SignUp Failed .Try Again"}
+            </p>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
-    </Form>
-    <div>
-    <div>
-        {successValue.success && !successValue.error ? (
-          <p className="text-green-700 font-bold text-3xl">
-            SuccessFull DONE
-          </p>
-        ) : !successValue.success && successValue.error ? (
-          <p className="text-red-700 font-bold text-3xl">
-           { "SignUp Failed .Try Again"  || successValue?.message }
-          </p>
-        ) : (
-          ""
-        )}
-      </div>
-    </div>
     </div>
   );
 };

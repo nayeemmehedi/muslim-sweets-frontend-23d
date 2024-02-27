@@ -15,6 +15,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import { BackgroundBeams } from "./NavDesign";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/StateManagement/store";
+import Cookies from "js-cookie";
 
 const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
 
@@ -31,13 +32,14 @@ function navResponsive() {
   function clickToggle() {
     setToggle(!toggle);
   }
-  const  cardValue = useSelector((state: RootState) => state.counter.value);
+  const cardValue = useSelector((state: RootState) => state.counter.value);
 
+  console.log("auth", localStorage.getItem("accessToken"));
 
   return (
     // 14100b
     // bg-[#14100b]
-    // bg-neutral-950 
+    // bg-neutral-950
     <div>
       <div className=" backgroundColorMain antialiased">
         <div className="">
@@ -71,11 +73,11 @@ function navResponsive() {
                   {NavValue?.map((nav, i) => (
                     <li key={i}>
                       {/* <a className="hover:text-gray-500" href="#"> */}
-                        <Link href={nav.link}> {nav.name}</Link>
+                      <Link href={nav.link}> {nav.name}</Link>
 
-                        <span className="text-xs font-thin text-amber-400 hover:text-red-600">
-                          +
-                        </span>
+                      <span className="text-xs font-thin text-amber-400 hover:text-red-600">
+                        +
+                      </span>
                       {/* </a> */}
                     </li>
                   ))}
@@ -90,7 +92,7 @@ function navResponsive() {
                 </Link>
                 {/* color="primary" */}
                 <Badge
-                  badgeContent={  cardValue.length || 0}
+                  badgeContent={cardValue.length || 0}
                   color="error"
                   className="text-amber-300"
                 >

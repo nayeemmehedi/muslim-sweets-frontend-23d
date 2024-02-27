@@ -50,11 +50,17 @@ function OderSummery({ value }: any) {
             <p className="text-orange-300">৳ {price + 100}</p>
           </div>
           <div className="my-4">
-            <Link href="confirm-product">
+
+            {
+              cardValue?.length > 0 &&   <Link href="confirm-product">
               <button className="w-full py-2 border  border-red-500 text-red-400 hover:text-blue-600">
                 PROCEED TO CHECKOUT
               </button>
             </Link>
+            }
+
+
+           
           </div>
         </div>
       </div>
