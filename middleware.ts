@@ -21,20 +21,12 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // if (!accessToken) {
-  //   return NextResponse.redirect(new URL(`/login?search=${path}`, request.url))
 
-  // } else {
-  //   return NextResponse.redirect(new URL(pathname, request.url))
-
-  // }
-
-  console.log("request middleware", request.nextUrl.pathname)
 
 
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/card','/payment-failed','/payment-success','/payment-option','/confirm-product', '/signup', '/login'],
+  matcher: ['/payment-failed','/payment-success','/payment-option','/confirm-product', '/signup', '/login'],
 }

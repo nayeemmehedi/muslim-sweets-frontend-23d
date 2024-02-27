@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import Link from "next/link";
@@ -11,16 +11,18 @@ import Cookies from "js-cookie";
 import { redirect, useRouter, useSearchParams } from "next/navigation";
 
 const FormLogin: React.FC = () => {
+  const [searchValue, setsearchValue] = useState("/");
 
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
-  const search = searchParams.get('search')
+  useEffect(() => {
+    const search: any = searchParams.get("search");
+    setsearchValue(search);
+  }, []);
 
-  
+  console.log("searchValue",searchValue)
 
-  const mainRouter = search ?? "/"
-
-  console.log("mainRouter", mainRouter)
+  const mainRouter = searchValue ?? "/";
 
 
   const [successValue, setLogin] = useState({
@@ -50,7 +52,7 @@ const FormLogin: React.FC = () => {
         // redirect("/")
 
         setTimeout(() => {
-          router.replace(mainRouter);
+          router.push(mainRouter);
         }, 2000);
       } else {
         setLogin({

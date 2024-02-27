@@ -1,10 +1,22 @@
 "use client"
 
-import {combineReducers, configureStore } from '@reduxjs/toolkit'
+import {combineReducers, configureStore,  } from '@reduxjs/toolkit'
 import counterReducer from './counterSlice'
 import { createStore } from 'redux'
-import { persistReducer } from 'redux-persist'
+import {
+   persistStore,
+   persistReducer,
+   FLUSH,
+   REHYDRATE,
+   PAUSE,
+   PERSIST,
+   PURGE,
+   REGISTER,
+ } from 'redux-persist'
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
+
+
+
 const createNoopStorage = () => {
    return {
       getItem(_key: any) {
@@ -21,9 +33,11 @@ const createNoopStorage = () => {
 const storage = typeof window !== 'undefined' ? createWebStorage('local') : createNoopStorage();
 
 
-const persistConfig = {
-  key: 'root',
+
+const persistConfig:any = {
+  key: 'nayeemConfig',
   storage,
+//   timeout: null
 }
 
 const rootReducer = combineReducers({
@@ -34,7 +48,13 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 
 export const store = configureStore({
-  reducer: persistedReducer
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
