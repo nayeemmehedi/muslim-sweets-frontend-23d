@@ -16,8 +16,21 @@ import { BackgroundBeams } from "./NavDesign";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/StateManagement/store";
 import Cookies from "js-cookie";
+import type { MenuProps } from "antd";
+import { Button, Dropdown } from "antd";
 
 const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
+
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: <button onClick={() => {
+      localStorage.clear()
+      window.location.reload();
+    }
+    }>Log Out</button>,
+  },
+];
 
 function navResponsive() {
   let NavValue = [
@@ -35,6 +48,8 @@ function navResponsive() {
   const cardValue = useSelector((state: RootState) => state.counter.value);
 
   console.log("auth", localStorage.getItem("accessToken"));
+
+  const userName = localStorage.getItem("userName") ?? "Robot";
 
   return (
     // 14100b
@@ -85,22 +100,22 @@ function navResponsive() {
               </div>
 
               <div className="flex items-center gap-6 text-amber-300 ">
-                {/* <IoSearch size={22} /> */}
-                <Link href={"/login"}>
-                  {" "}
-                  <TbUserSearch size={22} />
-                </Link>
-                {/* color="primary" */}
-                <Badge
-                  badgeContent={cardValue.length || 0}
-                  color="error"
-                  className="text-amber-300"
-                >
-                  <Link href={"/card"}>
-                    {" "}
-                    <TbShoppingCartSearch size={22} />
+                {/* <div>
+                  <Link href={"/login"}>
+                    <TbUserSearch size={22} />
                   </Link>
-                </Badge>
+                </div> */}
+                <div>
+                  <Badge
+                    badgeContent={cardValue.length || 0}
+                    color="error"
+                    className="text-amber-300"
+                  >
+                    <Link href={"/card"}>
+                      <TbShoppingCartSearch size={22} />
+                    </Link>
+                  </Badge>
+                </div>
 
                 <div
                   onClick={clickToggle}
@@ -110,6 +125,17 @@ function navResponsive() {
                     <AiOutlineClose></AiOutlineClose>
                   ) : (
                     <AiOutlineAlignRight></AiOutlineAlignRight>
+                  )}
+                </div>
+                <div>
+                  {userName !== "Robot" && (
+                    <Dropdown
+                      menu={{ items }}
+                      placement="top"
+                      arrow={{ pointAtCenter: true }}
+                    >
+                      <Button className="text-white">{userName}</Button>
+                    </Dropdown>
                   )}
                 </div>
               </div>

@@ -43,6 +43,8 @@ const FormLogin: React.FC = () => {
 
       localStorage.setItem("accessToken", value.data?.accessTokenValue);
       localStorage.setItem("refreshToken", value.data?.refreshTokenValue);
+      localStorage.setItem("username", value.data?.name || "User");
+
       if (value.statusCode == 200) {
         setLogin({
           success: true,

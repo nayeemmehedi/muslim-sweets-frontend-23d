@@ -8,6 +8,7 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
   console.log("pathname in middleware", pathname)
+console.log("req.nextUrl.origin",request.nextUrl.origin)
 
   const notAccess = request.nextUrl.pathname === "/login" || request.nextUrl.pathname === "/signup"
 
