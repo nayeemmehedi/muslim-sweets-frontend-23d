@@ -7,8 +7,8 @@ export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get("accessToken")
   const pathname = request.nextUrl.pathname
 
-  console.log("pathname in middleware", pathname)
-console.log("req.nextUrl.origin",request.nextUrl.origin)
+//   console.log("pathname in middleware", pathname)
+// console.log("req.nextUrl.origin",request.nextUrl.origin)
 
   const notAccess = request.nextUrl.pathname === "/login" || request.nextUrl.pathname === "/signup"
 

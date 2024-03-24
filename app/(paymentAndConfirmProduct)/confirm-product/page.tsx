@@ -46,11 +46,8 @@ function page() {
     { name: "Total Payment", value: price ? price + 100 : 0 },
   ];
 
-  
-const cardValue = useSelector((state: RootState) => state.counter.value);
-  const cardOrder = useSelector((state: RootState) => state.counter.order);
-
- 
+  const cardValue = useSelector((state: RootState) => state.counter.value);
+  const cardOrder: any = useSelector((state: RootState) => state.counter.order);
 
   function placeOder() {
     if (Object.keys(cardOrder).length === 0) {
@@ -58,11 +55,11 @@ const cardValue = useSelector((state: RootState) => state.counter.value);
     } else {
       setStatus(false);
 
-    
-
       router.push("/payment-option");
     }
   }
+
+  const userName = localStorage.getItem("username") ?? "User";
 
   return (
     <div className="bg-zinc-200 ">
@@ -78,16 +75,27 @@ const cardValue = useSelector((state: RootState) => state.counter.value);
       <div className="grid grid-cols-5 w-[90%] ml-auto mr-auto">
         <div className="col-span-3 mt-5">
           <div className="mx-8 my-3  p-6 bg-white shadow">
-            <p className="font-bold">Deliver to: nayeem mehedi</p>
-            <p className="font-light my-2">
-              Address: Dhaka{" "}
-              <span
-                onClick={() => toggleModal()}
-                className="underline text-blue-500 cursor-pointer"
-              >
-                edit
-              </span>{" "}
-            </p>
+            <p className="font-bold">Deliver to: {userName}</p>
+
+            <div>
+              {Object.keys(cardOrder).length > 0 ? (
+                <div>
+                  Address : {cardOrder?.address?.location},{" "}
+                  {cardOrder?.address?.upazila}, {cardOrder?.address?.district}
+                </div>
+              ) : (
+                <div className="font-light my-2">
+                  Address: ******{" "}
+                  <span
+                    onClick={() => toggleModal()}
+                    className="underline text-blue-500 cursor-pointer"
+                  >
+                    edit
+                  </span>{" "}
+                </div>
+              )}
+            </div>
+
             {/* <p className="font-light my-2">
               {" "}
               Email to : boyneel79@gmail.com{" "}
@@ -99,16 +107,22 @@ const cardValue = useSelector((state: RootState) => state.counter.value);
               </span>
             </p> */}
 
-            <p className="font-light my-2">
-              {" "}
-              Phone : 017565{" "}
-              <span
-                onClick={() => toggleModalPhone()}
-                className="underline text-blue-500"
-              >
-                edit
-              </span>
-            </p>
+            {Object.keys(cardOrder).length > 0 ? (
+              <div>
+                <div>Phone : {cardOrder.phone}</div>
+              </div>
+            ) : (
+              <div className="font-light my-2">
+                {" "}
+                Phone : *******{" "}
+                <span
+                  onClick={() => toggleModalPhone()}
+                  className="underline text-blue-500"
+                >
+                  edit
+                </span>
+              </div>
+            )}
           </div>
 
           <div>

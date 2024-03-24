@@ -15,9 +15,7 @@ interface MyComponentProps {
   toggleModal: () => any;
 }
 const ModalProduct: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
-
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   const [form] = Form.useForm();
   const [upazila, setUpozilla] = useState("Narail");
@@ -39,14 +37,17 @@ const ModalProduct: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
           form
             .validateFields()
             .then((values) => {
-              dispatch(productAndLocation(values))
-              
+              dispatch(productAndLocation(values));
+
               form.resetFields();
-              toggleModal;
+             
+              
             })
             .catch((info) => {
               console.log("Validate Failed:", info);
-            });
+            })
+            toggleModal()
+
         }}
         onCancel={toggleModal}
       >

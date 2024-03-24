@@ -36,7 +36,6 @@ function FormSignUp() {
     const formDataToSend = new FormData();
 
     for (const [key, value] of Object.entries(values)) {
-      console.log(`Key: ${key}, Value:`, value);
       if (key !== "imgUrl") {
         if (typeof value === 'string') {
           formDataToSend.append(key, value);

@@ -47,9 +47,11 @@ function navResponsive() {
   }
   const cardValue = useSelector((state: RootState) => state.counter.value);
 
-  console.log("auth", localStorage.getItem("accessToken"));
+  // console.log("auth", localStorage.getItem("accessToken"));
 
-  const userName = localStorage.getItem("userName") ?? "Robot";
+  const userName = localStorage.getItem("username") ;
+
+  console.log("KI",userName);
 
   return (
     // 14100b
@@ -128,7 +130,7 @@ function navResponsive() {
                   )}
                 </div>
                 <div>
-                  {userName !== "Robot" && (
+                  {userName && (
                     <Dropdown
                       menu={{ items }}
                       placement="top"

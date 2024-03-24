@@ -36,14 +36,14 @@ const FormLogin: React.FC = () => {
   const onFinish = async (values: any) => {
     try {
       const value = await postDataLogin(values);
-      console.log("login", value);
+      // console.log("login", value);
 
       Cookies.set("accessToken", value.data?.accessTokenValue);
       Cookies.set("refreshToken", value.data?.refreshTokenValue);
 
       localStorage.setItem("accessToken", value.data?.accessTokenValue);
       localStorage.setItem("refreshToken", value.data?.refreshTokenValue);
-      localStorage.setItem("username", value.data?.name || "User");
+      localStorage.setItem("username", value.data?.userName);
 
       if (value.statusCode == 200) {
         setLogin({
