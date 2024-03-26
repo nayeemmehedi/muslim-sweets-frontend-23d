@@ -10,9 +10,9 @@ const protectedRoutes = [
 ];
 
 // Configure the middleware to run for the protected routes
-// export const config = {
-//   matcher: protectedRoutes.map((route) => `${route}/:id*`),
-// };
+export const config = {
+  matcher: protectedRoutes.map((route) => `${route}/:id*`),
+};
 
 export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value;
@@ -32,6 +32,6 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = {
-  matcher: ['/payment-failed','/payment-success','/payment-option','/confirm-product'],
-}
+// export const config = {
+//   matcher: ['/payment-failed','/payment-success','/payment-option','/confirm-product'],
+// }
