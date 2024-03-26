@@ -13,7 +13,7 @@ const productAll = async () => {
 const productId = async (id:String) => {
   try {
     const response: any = await apiValue.get("/product/"+id);
-    console.log("response data", response.data);
+    // console.log("response data", response.data);
 
     return response.data;
   } catch (error) {

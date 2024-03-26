@@ -4,7 +4,7 @@ import { apiValue, responseValue } from ".";
 const buy = async (body:any) => {
   try {
     const response: any = await apiValue.post("/buy/buyProduct",body);
-    console.log("response data", response.data);
+    // console.log("response data", response.data);
 
     return response.data;
   } catch (error) {
@@ -17,7 +17,7 @@ const buy = async (body:any) => {
 const buyBkash = async (body:any) => {
     try {
       const response: any = await apiValue.post("/payment/init",body);
-      console.log("response data", response.data);
+      // console.log("response data", response.data);
   
       return response.data;
     } catch (error) {

@@ -50,8 +50,10 @@ function navResponsive() {
   // console.log("auth", localStorage.getItem("accessToken"));
 
   const userName = localStorage.getItem("username") ;
+  
+  console.log("loval",process.env.localhost)
+  
 
-  console.log("KI",userName);
 
   return (
     // 14100b

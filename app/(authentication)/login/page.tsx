@@ -5,6 +5,7 @@ import FormLogin from "./FormLogin";
 import { Dancing_Script } from "next/font/google";
 import LottieReact from "@/app/utls/LottieReact";
 import animation2 from "@/public/illustration/Animation2.json";
+import { usePathname } from 'next/navigation'
 
 const inter = Dancing_Script({ subsets: ["latin"] });
 

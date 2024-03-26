@@ -35,7 +35,7 @@ const apiValue2 = axios.create({
   },
 });
 const my_access_token = Cookies.get("accessToken");
-console.log("my access token",my_access_token)
+// console.log("my access token",my_access_token)
 // const my_refresh_token = Cookies.get('refreshToken');
 
 // Request interceptor
@@ -103,7 +103,7 @@ const postDataSignup = async (value:any) => {
 
   try {
     const response:any = await apiValue2.post('/signup', value); 
-    console.log("response data",response.data)
+    // console.log("response data",response.data)
     
     return response.data
     
@@ -118,7 +118,7 @@ const postDataLogin = async (value:any) => {
 
   try {
     const response:any = await apiValue.post('/login', value); 
-    console.log("response data",response.data)
+    // console.log("response data",response.data)
     
     return response.data
     

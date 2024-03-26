@@ -1,33 +1,37 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server';
 
-// This function can be marked `async` if using `await` inside
+// Define the protected routes
+const protectedRoutes = [
+  '/card',
+  '/payment-failed',
+  '/payment-success',
+  '/payment-option',
+  '/confirm-product',
+];
+
+// Configure the middleware to run for the protected routes
+// export const config = {
+//   matcher: protectedRoutes.map((route) => `${route}/:id*`),
+// };
+
 export function middleware(request: NextRequest) {
+  const accessToken = request.cookies.get('accessToken')?.value;
+  const requestedUrl = request.nextUrl.pathname;
 
-  const accessToken = request.cookies.get("accessToken")
-  const pathname = request.nextUrl.pathname
-
-//   console.log("pathname in middleware", pathname)
-// console.log("req.nextUrl.origin",request.nextUrl.origin)
-
-  const notAccess = request.nextUrl.pathname === "/login" || request.nextUrl.pathname === "/signup"
-
-  if (notAccess) {
-    if (accessToken) {
-      return NextResponse.redirect(new URL("/", request.url))
-    }
-  }else{
-    if(!accessToken) {
-      return NextResponse.redirect(new URL(`/login?search=${pathname}`, request.url))
+  // Check if the requested route is protected
+  if (protectedRoutes.some((route) => requestedUrl.startsWith(route))) {
+    // If the user is not authenticated, redirect to the login page
+    if (!accessToken) {
+      const loginUrl = new URL('/login', request.url);
+      loginUrl.searchParams.set('redirect', requestedUrl);
+      return NextResponse.redirect(loginUrl);
     }
   }
 
-
-
-
+  // If the user is authenticated or the requested route is not protected, continue
+  return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/payment-failed','/payment-success','/payment-option','/confirm-product', '/signup', '/login'],
+  matcher: ['/payment-failed','/payment-success','/payment-option','/confirm-product'],
 }

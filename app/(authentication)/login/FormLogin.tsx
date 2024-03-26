@@ -4,25 +4,25 @@ import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import Link from "next/link";
-import { Dancing_Script } from "next/font/google";
 import { ColorChange } from "@/app/utls/ColorChange";
 import { postDataLogin } from "@/app/fetch";
 import Cookies from "js-cookie";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+import {  useRouter, useSearchParams } from "next/navigation";
 
 const FormLogin: React.FC = () => {
+
+
   const [searchValue, setsearchValue] = useState("/");
 
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const search: any = searchParams.get("search");
+    const search: any = searchParams.get("redirect");
     setsearchValue(search);
-  }, []);
+  }, [searchParams]);
 
-  console.log("searchValue",searchValue)
 
-  const mainRouter = searchValue ?? "/";
+
 
 
   const [successValue, setLogin] = useState({
@@ -52,10 +52,10 @@ const FormLogin: React.FC = () => {
           error: false,
         });
         // redirect("/")
-
+    
         setTimeout(() => {
-          router.push(mainRouter);
-        }, 2000);
+          router.push(`https://muslim-sweets-frontend-23d.vercel.app/${searchValue}`);
+        }, 500);
       } else {
         setLogin({
           success: false,
@@ -71,9 +71,7 @@ const FormLogin: React.FC = () => {
     }
   };
 
-  //  setTimeout(() => {
-  //   redirect("/")
-  //  }, 1000);
+  
 
   return (
     <div>
