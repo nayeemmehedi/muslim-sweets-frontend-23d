@@ -24,11 +24,16 @@ const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
 const items: MenuProps["items"] = [
   {
     key: "1",
-    label: <button onClick={() => {
-      localStorage.clear()
-      window.location.reload();
-    }
-    }>Log Out</button>,
+    label: (
+      <button
+        onClick={() => {
+          localStorage.clear();
+          window.location.reload();
+        }}
+      >
+        Log Out
+      </button>
+    ),
   },
 ];
 
@@ -49,11 +54,9 @@ function navResponsive() {
 
   // console.log("auth", localStorage.getItem("accessToken"));
 
-  const userName = localStorage.getItem("username") ;
-  
-  console.log("loval",process.env.localhost)
-  
+  const userName = localStorage.getItem("username");
 
+  console.log("loval", process.env.localhost);
 
   return (
     // 14100b
@@ -104,14 +107,16 @@ function navResponsive() {
               </div>
 
               <div className="flex items-center gap-6 text-amber-300 ">
-                {/* <div>
-                  <Link href={"/login"}>
-                    <TbUserSearch size={22} />
-                  </Link>
-                </div> */}
+                <div>
+                  {!userName && (
+                    <Link href={"/login"}>
+                      <TbUserSearch size={22} />
+                    </Link>
+                  )}
+                </div>
                 <div>
                   <Badge
-                    badgeContent={cardValue.length || 0}
+                    badgeContent={userName ? cardValue.length || 0 : null}
                     color="error"
                     className="text-amber-300"
                   >

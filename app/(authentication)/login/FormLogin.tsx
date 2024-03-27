@@ -7,11 +7,9 @@ import Link from "next/link";
 import { ColorChange } from "@/app/utls/ColorChange";
 import { postDataLogin } from "@/app/fetch";
 import Cookies from "js-cookie";
-import {  useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const FormLogin: React.FC = () => {
-
-
   const [searchValue, setsearchValue] = useState("/");
 
   const searchParams = useSearchParams();
@@ -20,10 +18,6 @@ const FormLogin: React.FC = () => {
     const search: any = searchParams.get("redirect");
     setsearchValue(search);
   }, [searchParams]);
-
-
-
-
 
   const [successValue, setLogin] = useState({
     success: false,
@@ -52,9 +46,15 @@ const FormLogin: React.FC = () => {
           error: false,
         });
         // redirect("/")
-    
+
         setTimeout(() => {
-          router.push(`https://muslim-sweets-frontend-23d.vercel.app/${searchValue}`);
+          if (searchValue) {
+            router.push(
+              `https://muslim-sweets-frontend-23d.vercel.app/${searchValue}`
+            );
+          } else {
+            router.push(`https://muslim-sweets-frontend-23d.vercel.app`);
+          }
         }, 500);
       } else {
         setLogin({
@@ -70,8 +70,6 @@ const FormLogin: React.FC = () => {
       alert("Error");
     }
   };
-
-  
 
   return (
     <div>
