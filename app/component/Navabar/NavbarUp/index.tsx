@@ -25,14 +25,17 @@ const items: MenuProps["items"] = [
   {
     key: "1",
     label: (
-      <button
-        onClick={() => {
+      <div
+        onClick={async () => {
+          Cookies.remove("accessToken");
+          Cookies.remove("refreshToken");
+
           localStorage.clear();
           window.location.reload();
         }}
       >
         Log Out
-      </button>
+      </div>
     ),
   },
 ];

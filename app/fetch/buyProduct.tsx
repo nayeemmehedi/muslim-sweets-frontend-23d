@@ -26,4 +26,16 @@ const buyBkash = async (body:any) => {
     }
   };
 
-export { buy,buyBkash };
+  const logout = async () => {
+    try {
+      const response: any = await apiValue.post("/logout");
+      console.log("response data logout", response.data);
+  
+      return response.data;
+    } catch (error) {
+      console.log(error)
+      return null
+    }
+  };
+
+export { buy,buyBkash, logout };
