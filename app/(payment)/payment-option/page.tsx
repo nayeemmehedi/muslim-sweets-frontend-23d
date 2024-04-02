@@ -73,7 +73,7 @@ function paymentOption() {
       </div>
 
       <div className="text-center text-green-700">
-        ("Please select which mathod  preferences you want to.")
+        Please select which mathod  preferences you want to.
       </div>
     </div>
   );
