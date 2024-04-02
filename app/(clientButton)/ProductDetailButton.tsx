@@ -54,8 +54,13 @@ function ProductDetailButton({ productDetails }: any) {
             )}
             htmlType="submit"
             // onClick={goToCard}
+            disabled={number}
           >
-            Go to Card
+            {number ? (
+              <div className="text-blue-700">Loading..</div>
+            ) : (
+              "Add To Card"
+            )}
           </Button>
         </Form.Item>
       </Form>

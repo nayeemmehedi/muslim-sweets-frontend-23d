@@ -10,6 +10,8 @@ import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const FormLogin: React.FC = () => {
+
+  console.log("eikhne login login ascbe")
   const [searchValue, setsearchValue] = useState("/");
 
   const searchParams = useSearchParams();
@@ -30,16 +32,19 @@ const FormLogin: React.FC = () => {
   const onFinish = async (values: any) => {
     try {
       const value = await postDataLogin(values);
-      // console.log("login", value);
-
-      Cookies.set("accessToken", value.data?.accessTokenValue);
-      Cookies.set("refreshToken", value.data?.refreshTokenValue);
-
-      localStorage.setItem("accessToken", value.data?.accessTokenValue);
-      localStorage.setItem("refreshToken", value.data?.refreshTokenValue);
-      localStorage.setItem("username", value.data?.userName);
+     
 
       if (value.statusCode == 200) {
+        console.log("login...", value);
+
+        Cookies.set("accessToken", value.data?.accessTokenValue);
+        Cookies.set("refreshToken", value.data?.refreshTokenValue);
+  
+        localStorage.setItem("accessToken", value.data?.accessTokenValue);
+        localStorage.setItem("refreshToken", value.data?.refreshTokenValue);
+        localStorage.setItem("username", value.data?.userName);
+
+
         setLogin({
           success: true,
           loading: false,

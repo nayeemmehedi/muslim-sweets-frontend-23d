@@ -6,6 +6,7 @@ import "react-slideshow-image/dist/styles.css";
 import { Dancing_Script } from "next/font/google";
 import "../../../style/slider.css";
 import { imagesSlide } from "@/app/extra/JsonFile/JsonFile";
+import Link from "next/link";
 
 const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
 
@@ -30,6 +31,12 @@ const SlideShow = () => {
                 <p className="text-4xl text-white ">{each.content_h1}</p>
                 <p className="text-amber-400">{each.content_h2}</p>
                 <p className="mt-5 text-red-100 ">{each.content_p}</p>
+                <Link href={"/product"}>
+                  <button className="text-amber-400 my-3 border border-amber-400 p-3 rounded">
+                    {" "}
+                    ONLINE STORE
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

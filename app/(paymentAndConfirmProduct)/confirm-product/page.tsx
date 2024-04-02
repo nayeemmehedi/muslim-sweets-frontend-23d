@@ -80,18 +80,30 @@ function page() {
             <div>
               {Object.keys(cardOrder).length > 0 ? (
                 <div>
-                  Address : {cardOrder?.address?.location},{" "}
-                  {cardOrder?.address?.upazila}, {cardOrder?.address?.district}
+                 <span>
+                 Address : {cardOrder?.address?.location},{" "}
+                  {cardOrder?.address?.upazila}, {cardOrder?.address?.district} 
+
+                 </span>
+                  <span
+                      onClick={() => toggleModal()}
+                      className="underline text-blue-500 cursor-pointer"
+                    >
+                       edit
+                    </span>{" "}
                 </div>
               ) : (
-                <div className="font-light my-2">
-                  Address: ******{" "}
-                  <span
-                    onClick={() => toggleModal()}
-                    className="underline text-blue-500 cursor-pointer"
-                  >
-                    edit
-                  </span>{" "}
+                <div>
+                  <div className="font-light my-2">
+                    Address: ******{" "}
+                    <span
+                      onClick={() => toggleModal()}
+                      className="underline text-blue-500 cursor-pointer"
+                    >
+                      edit
+                    </span>{" "}
+                  </div>
+                 
                 </div>
               )}
             </div>
@@ -107,20 +119,33 @@ function page() {
               </span>
             </p> */}
 
-            {Object.keys(cardOrder).length > 0 ? (
-              <div>
-                <div>Phone : {cardOrder.phone}</div>
-              </div>
+            {Object.keys(cardOrder).length < 1 ? (
+              ""
             ) : (
-              <div className="font-light my-2">
-                {" "}
-                Phone : *******{" "}
-                <span
-                  onClick={() => toggleModalPhone()}
-                  className="underline text-blue-500"
-                >
-                  edit
-                </span>
+              <div>
+
+                {Object.keys(cardOrder).length > 1 ? (
+                  <div>
+                    <div>Phone(Optional) : {cardOrder.phone}</div>
+                    <span
+                      onClick={() => toggleModalPhone()}
+                      className="underline text-blue-500"
+                    >
+                      edit
+                    </span>
+                  </div>
+                ) : (
+                  <div className="font-light my-2">
+                    {" "}
+                    Phone(Optional) : *******{" "}
+                    <span
+                      onClick={() => toggleModalPhone()}
+                      className="underline text-blue-500"
+                    >
+                      edit
+                    </span>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -178,9 +203,7 @@ function page() {
                   <div className="py-5 text-red-900 flex">
                     {" "}
                     <IoMdWarning style={{ fontSize: "20px" }} />{" "}
-                    <small>
-                      Please Add your Location and Personal Information
-                    </small>
+                    <small>Please Add your Address and Phone</small>
                   </div>
                 </div>
               )}

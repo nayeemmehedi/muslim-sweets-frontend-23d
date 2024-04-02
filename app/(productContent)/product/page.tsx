@@ -2,7 +2,8 @@ import MainProduct from "@/app/component/product/mainProduct";
 import Toprate from "@/app/component/product/topRated";
 import React from "react";
 
-function Product() {
+async function Product() {
+
   
 
   return (

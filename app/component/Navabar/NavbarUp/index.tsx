@@ -18,29 +18,23 @@ import { RootState } from "@/app/StateManagement/store";
 import Cookies from "js-cookie";
 import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
+import { usePathname } from "next/navigation";
+
 
 const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
 
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: (
-      <div
-        onClick={async () => {
-          Cookies.remove("accessToken");
-          Cookies.remove("refreshToken");
-
-          localStorage.clear();
-          window.location.reload();
-        }}
-      >
-        Log Out
-      </div>
-    ),
-  },
-];
+// const items: MenuProps["items"] = [
+//   {
+//     key: "1",
+//     label: (
+//      
+//     ),
+//   },
+// ];
 
 function navResponsive() {
+
+  const pathname = usePathname()
   let NavValue = [
     { name: "Home", link: "/" },
     { name: "Products", link: "/product" },
@@ -59,7 +53,6 @@ function navResponsive() {
 
   const userName = localStorage.getItem("username");
 
-  console.log("loval", process.env.localhost);
 
   return (
     // 14100b
@@ -98,7 +91,7 @@ function navResponsive() {
                   {NavValue?.map((nav, i) => (
                     <li key={i}>
                       {/* <a className="hover:text-gray-500" href="#"> */}
-                      <Link href={nav.link}> {nav.name}</Link>
+                      <Link  className={`${pathname === nav.link ? 'text-gray-400' : ''}`}  href={nav.link}> {nav.name}</Link>
 
                       <span className="text-xs font-thin text-amber-400 hover:text-red-600">
                         +
@@ -141,13 +134,7 @@ function navResponsive() {
                 </div>
                 <div>
                   {userName && (
-                    <Dropdown
-                      menu={{ items }}
-                      placement="top"
-                      arrow={{ pointAtCenter: true }}
-                    >
-                      <Button className="text-white">{userName}</Button>
-                    </Dropdown>
+                    <Button className="text-white">{userName}</Button>
                   )}
                 </div>
               </div>

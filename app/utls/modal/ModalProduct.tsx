@@ -40,14 +40,11 @@ const ModalProduct: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
               dispatch(productAndLocation(values));
 
               form.resetFields();
-             
-              
             })
             .catch((info) => {
               console.log("Validate Failed:", info);
-            })
-            toggleModal()
-
+            });
+          toggleModal();
         }}
         onCancel={toggleModal}
       >

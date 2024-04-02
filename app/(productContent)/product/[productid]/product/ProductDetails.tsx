@@ -1,10 +1,13 @@
 import ProductDetailButton from "@/app/(clientButton)/ProductDetailButton";
 import { productId } from "@/app/fetch/product";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 async function ProductDetails({ id }: any) {
   const product = await productId(id);
-  let productDetails = product.data.value[0];
+  let productDetails = product?.data?.value[0];
+
+ 
 
   // console.log("saepected product", productDetails);
 
@@ -38,7 +41,7 @@ async function ProductDetails({ id }: any) {
               </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+           { productDetails ?  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
               <div className="flex flex-col md:flex-row -mx-4">
                 <div className="md:flex-1 px-4">
                   <div x-data="{ image: 1 }" x-cloak>
@@ -49,7 +52,7 @@ async function ProductDetails({ id }: any) {
                           width={400}
                           height={400}
                           alt="Picture"
-                          style={{maxHeight:"320px"}}
+                          style={{ maxHeight: "320px" }}
                         />
                       </div>
                     </div>
@@ -81,10 +84,12 @@ async function ProductDetails({ id }: any) {
 
                   <p className="text-gray-500">{productDetails?.description}</p>
 
-                  <ProductDetailButton productDetails={productDetails}></ProductDetailButton>
+                  <ProductDetailButton
+                    productDetails={productDetails}
+                  ></ProductDetailButton>
                 </div>
               </div>
-            </div>
+            </div> : "Loading .."}
           </div>
         </div>
       </div>
