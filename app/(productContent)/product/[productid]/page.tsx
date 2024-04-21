@@ -4,9 +4,14 @@ import Rating from "./product/Rating";
 
 function page({ params }: any) {
 
+  if(!params.productid){
+    return <div className="text-center text-red-400 text-2xl">Product Details not found ,try another one</div>
+
+  }
+
   return (
     <div>
-      <ProductDetails id={params?.productid}></ProductDetails>
+      <ProductDetails  params={params}></ProductDetails>
       <Rating id={params?.productid}></Rating>
     </div>
   );

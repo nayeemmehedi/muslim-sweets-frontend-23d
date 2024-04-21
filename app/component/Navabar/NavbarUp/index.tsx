@@ -51,7 +51,8 @@ function navResponsive() {
 
   // console.log("auth", localStorage.getItem("accessToken"));
 
-  const userName = localStorage.getItem("username");
+  // const userName = localStorage.getItem("username");
+  const userName = Cookies.get('username');
 
 
   return (

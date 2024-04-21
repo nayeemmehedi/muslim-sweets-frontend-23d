@@ -40,9 +40,9 @@ const FormLogin: React.FC = () => {
         Cookies.set("accessToken", value.data?.accessTokenValue);
         Cookies.set("refreshToken", value.data?.refreshTokenValue);
   
-        localStorage.setItem("accessToken", value.data?.accessTokenValue);
-        localStorage.setItem("refreshToken", value.data?.refreshTokenValue);
-        localStorage.setItem("username", value.data?.userName);
+        // localStorage.setItem("accessToken", value.data?.accessTokenValue);
+        // localStorage.setItem("refreshToken", value.data?.refreshTokenValue);
+        Cookies.set("username", value.data?.userName);
 
 
         setLogin({
@@ -51,6 +51,7 @@ const FormLogin: React.FC = () => {
           error: false,
         });
         // redirect("/")
+        http://localhost:3000
 
         setTimeout(() => {
           if (searchValue) {
@@ -91,7 +92,7 @@ const FormLogin: React.FC = () => {
           rules={[{ required: true, message: "Please input your Email!" }]}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={<UserOutlined className="site-form-item-icon" onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />}
             placeholder="email"
           />
         </Form.Item>
@@ -107,7 +108,7 @@ const FormLogin: React.FC = () => {
           ]}
         >
           <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" />}
+            prefix={<LockOutlined className="site-form-item-icon" onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />}
             type="password"
             placeholder="Password"
           />
