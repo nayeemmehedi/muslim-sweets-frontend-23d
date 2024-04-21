@@ -181,7 +181,7 @@ function FormSignUp() {
             <Upload maxCount={1} listType="picture-card">
               <div>
                 <ColorChange>
-                  <PlusOutlined />
+                  <PlusOutlined onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
                   <div style={{ marginTop: 8 }}>Upload</div>
                 </ColorChange>
               </div>
