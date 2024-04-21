@@ -10,8 +10,7 @@ import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const FormLogin: React.FC = () => {
-
-  console.log("eikhne login login ascbe")
+  console.log("eikhne login login ascbe");
   const [searchValue, setsearchValue] = useState("/");
 
   const searchParams = useSearchParams();
@@ -32,18 +31,16 @@ const FormLogin: React.FC = () => {
   const onFinish = async (values: any) => {
     try {
       const value = await postDataLogin(values);
-     
 
       if (value.statusCode == 200) {
         console.log("login...", value);
 
         Cookies.set("accessToken", value.data?.accessTokenValue);
         Cookies.set("refreshToken", value.data?.refreshTokenValue);
-  
+
         // localStorage.setItem("accessToken", value.data?.accessTokenValue);
         // localStorage.setItem("refreshToken", value.data?.refreshTokenValue);
         Cookies.set("username", value.data?.userName);
-
 
         setLogin({
           success: true,
@@ -51,15 +48,14 @@ const FormLogin: React.FC = () => {
           error: false,
         });
         // redirect("/")
-        http://localhost:3000
+        //localhost:3000
 
+       
         setTimeout(() => {
           if (searchValue) {
-            router.push(
-              `https://muslim-sweets-frontend-23d.vercel.app/${searchValue}`
-            );
+            window.location.href = `https://muslim-sweets-frontend-23d.vercel.app/${searchValue}`;
           } else {
-            router.push(`https://muslim-sweets-frontend-23d.vercel.app`);
+            window.location.href = `https://muslim-sweets-frontend-23d.vercel.app`;
           }
         }, 500);
       } else {
@@ -92,7 +88,13 @@ const FormLogin: React.FC = () => {
           rules={[{ required: true, message: "Please input your Email!" }]}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />}
+            prefix={
+              <UserOutlined
+                className="site-form-item-icon"
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              />
+            }
             placeholder="email"
           />
         </Form.Item>
@@ -108,7 +110,13 @@ const FormLogin: React.FC = () => {
           ]}
         >
           <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />}
+            prefix={
+              <LockOutlined
+                className="site-form-item-icon"
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+              />
+            }
             type="password"
             placeholder="Password"
           />
