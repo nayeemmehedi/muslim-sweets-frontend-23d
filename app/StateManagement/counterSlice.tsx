@@ -32,14 +32,14 @@ export const counterSlice = createSlice({
         (item) => item.englishName !== action.payload
       );
 
-      console.log("newValue", newValue);
+      // console.log("newValue", newValue);
 
       state.value = newValue;
     },
     productAndLocation: (state, action: PayloadAction<any>) => {
       let value = state.order
       state.order = { ...value,...action.payload  };
-      console.log(state.order)
+      // console.log(state.order)
     },
   },
 });

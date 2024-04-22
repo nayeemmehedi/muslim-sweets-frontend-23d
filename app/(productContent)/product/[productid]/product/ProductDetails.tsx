@@ -9,7 +9,7 @@ async function ProductDetails({ params }: { params: { productid: any } }) {
   const product = await productId(productid);
   let productDetails = product?.data?.value[0];
 
-  console.log("productDetails",productDetails)
+  // console.log("productDetails",productDetails)
 
   if (!productDetails) {
     return (

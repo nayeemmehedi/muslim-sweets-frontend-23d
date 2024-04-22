@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const FormLogin: React.FC = () => {
-  console.log("eikhne login login ascbe");
+  // console.log("eikhne login login ascbe");
   const [searchValue, setsearchValue] = useState("/");
 
   const searchParams = useSearchParams();
@@ -33,7 +33,7 @@ const FormLogin: React.FC = () => {
       const value = await postDataLogin(values);
 
       if (value.statusCode == 200) {
-        console.log("login...", value);
+        // console.log("login...", value);
 
         Cookies.set("accessToken", value.data?.accessTokenValue);
         Cookies.set("refreshToken", value.data?.refreshTokenValue);
@@ -66,8 +66,8 @@ const FormLogin: React.FC = () => {
         });
       }
     } catch (error: any) {
-      console.log(error.message);
-      console.log(error);
+      // console.log(error.message);
+      // console.log(error);
 
       alert("Error");
     }

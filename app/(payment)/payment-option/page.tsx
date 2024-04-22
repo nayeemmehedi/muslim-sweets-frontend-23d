@@ -32,6 +32,7 @@ function paymentOption() {
       router.push("/payment-success");
     } else {
       console.log("error");
+      alert("error");
     }
   }
 
@@ -45,7 +46,7 @@ function paymentOption() {
 
     const buyProduct = await buyBkash(productWithAddress);
 
-    console.log("buyProduct.data.gateway", buyProduct.data.gateway);
+    // console.log("buyProduct.data.gateway", buyProduct.data.gateway);
 
     // if(buyProduct.st)
     if (buyProduct.statusCode == 200) {

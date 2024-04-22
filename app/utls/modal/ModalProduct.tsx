@@ -42,7 +42,7 @@ const ModalProduct: React.FC<MyComponentProps> = ({ modal, toggleModal }) => {
               form.resetFields();
             })
             .catch((info) => {
-              console.log("Validate Failed:", info);
+              // console.log("Validate Failed:", info);
             });
           toggleModal();
         }}

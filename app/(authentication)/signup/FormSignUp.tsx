@@ -57,7 +57,7 @@ function FormSignUp() {
     try {
       let value: any = await postDataSignup(formDataToSend);
 
-      console.log("value sigup", value);
+      // console.log("value sigup", value);
 
       setResponseGet(initialresponse);
       setSuccess({
@@ -66,7 +66,7 @@ function FormSignUp() {
         error: false,
       });
     } catch (error:any) {
-      console.log("errror", error);
+      // console.log("errror", error);
       console.log("errror", error.message);
 
       setResponseGet(initialresponse);
