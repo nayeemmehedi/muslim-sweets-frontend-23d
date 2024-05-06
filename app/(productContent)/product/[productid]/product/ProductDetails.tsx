@@ -6,15 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 // import { useRouter } from "next/navigation";
 
-async function ProductDetails({ params }: { params: { productid: any } }) {
-  const { productid } = params;
+async function ProductDetails({ id }: any) {
+  
 
   // const product = await productId(productid);
   // let productDetails = product?.data?.value[0];
 
   const { isLoading, isSuccess, data, error, isPending, isError } = useQuery({
-    queryKey: ["todos", productid],
-    queryFn: () => productId(productid),
+    queryKey: ["todos"],
+    queryFn: () => productId(id),
   });
 
   if (isLoading || isPending) {

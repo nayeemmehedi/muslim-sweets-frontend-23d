@@ -3,9 +3,6 @@ import Toprate from "@/app/component/product/topRated";
 import React from "react";
 
 async function Product() {
-
-  
-
   return (
     <div className="container w-[90%] ml-auto mr-auto">
       <div className="grid grid-cols-5  gap-3 text-red-800">
@@ -23,4 +20,4 @@ async function Product() {
   );
 }
 
-export default (Product);
+export default Product;
