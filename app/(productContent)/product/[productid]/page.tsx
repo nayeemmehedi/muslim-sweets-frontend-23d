@@ -1,10 +1,15 @@
+"use client";
+
 import React from "react";
 import ProductDetails from "./product/ProductDetails";
 import Rating from "./product/Rating";
 // import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import  ErrorBoundary from "../../../utls/ErrorBoundary.js"
+import { useParams } from 'next/navigation'
 
-function page({ params }: any) {
+function page() {
+  const params = useParams()
+  
 
   return (
     <div>
