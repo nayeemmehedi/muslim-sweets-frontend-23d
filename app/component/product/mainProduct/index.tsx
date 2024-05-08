@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import ProductButton from "../../NextClientSIdeWork/ProductButton";
+import { Button } from "antd";
 
 async function MainProduct({ product }: any) {
   return (
@@ -35,7 +35,13 @@ async function MainProduct({ product }: any) {
               </div>
             </div>
             <Link href={`/product/${p?._id}`}>
-              <ProductButton></ProductButton>
+              <div></div>
+              <div className="flex justify-center my-1">
+                {" "}
+                <button className="border border-red-600 text-red-500 hover:text-green-500 hover:border-green-400  p-1  w-full  m-3 rounded-md ">
+                  <div className="text-blue-700">Product Details</div>
+                </button>
+              </div>
             </Link>
           </div>
         ))}

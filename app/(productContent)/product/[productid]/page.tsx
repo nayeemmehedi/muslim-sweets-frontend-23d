@@ -10,11 +10,10 @@ async function page({params}:any) {
 
   return (
     <div>
-     {product?<div>
+     <div>
       <ProductDetails  productDetails={product?.data?.value[0]}></ProductDetails>
       <Rating productDetails={product?.data?.value[0]}></Rating>
-     </div>: "Loading.."
-      }
+     </div>
     </div>
   );
 }
