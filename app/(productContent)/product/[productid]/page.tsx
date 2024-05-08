@@ -1,22 +1,20 @@
-"use client";
-
 import React from "react";
 import ProductDetails from "./product/ProductDetails";
 import Rating from "./product/Rating";
-// import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-import  ErrorBoundary from "../../../utls/ErrorBoundary.js"
-import { useParams } from 'next/navigation'
+import { productId } from "@/app/fetch/product";
 
-function page() {
-  const params = useParams()
-  
+
+async function page({params}:any) {
+
+  const product = await productId(params.productid);
 
   return (
     <div>
-      <ErrorBoundary>
-      <ProductDetails  id={params?.productid}></ProductDetails>
-      <Rating id={params?.productid}></Rating>
-      </ErrorBoundary>
+     {product?<div>
+      <ProductDetails  productDetails={product?.data?.value[0]}></ProductDetails>
+      <Rating productDetails={product?.data?.value[0]}></Rating>
+     </div>: "Loading.."
+      }
     </div>
   );
 }

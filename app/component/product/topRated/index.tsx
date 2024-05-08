@@ -1,11 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { productAll } from "@/app/fetch/product";
-import { productAllFake } from "@/app/extra/JsonFile/JsonFile";
-// import getProduct from "@/app/fetch/product";
 
-async function Toprate() {
-  const product = await productAll();
+
+async function Toprate({product}:any) {
+  // const product = await productAll();
 
   return (
     <div>

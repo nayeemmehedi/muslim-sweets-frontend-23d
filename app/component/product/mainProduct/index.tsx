@@ -1,13 +1,9 @@
-import { productAll } from "@/app/fetch/product";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ProductButton from "../../NextClientSIdeWork/ProductButton";
-import { productAllFake } from "@/app/extra/JsonFile/JsonFile";
 
-async function MainProduct() {
-  const product = await productAll();
-
+async function MainProduct({ product }: any) {
   return (
     <div>
       <div className="grid grid-cols-3 gap-8 mx-10 my-6 ">
