@@ -8,10 +8,12 @@ import { productId } from "@/app/fetch/product";
 import { useQuery } from "@tanstack/react-query";
 
 async function Rating({productDetails}: any) {
+
   
   return (
    
     <div className="w-[85%] ml-auto mr-auto my-10 ">
+      {productDetails?
       <div className="flex">
         <div>
           <div className="flex items-center my-3">
@@ -44,7 +46,7 @@ async function Rating({productDetails}: any) {
           <Rate disabled defaultValue={1} />
           <br />
         </div>
-      </div>
+      </div>:"Loading.."}
     </div>
   );
 }

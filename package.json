@@ -38,7 +38,6 @@
     "styled-components": "^6.1.1",
     "tailwind-merge": "^2.2.1",
     "tw-elements": "^1.1.0",
-    "tw-elements-react": "^1.0.0-alpha2",
     "universal-cookie": "^7.0.1"
   },
   "devDependencies": {
