@@ -1,10 +1,15 @@
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import React from "react";
 import { Button } from "antd";
 import ProductButton from "../../NextClientSIdeWork/ProductButton";
 
 async function MainProduct({ product }: any) {
+  if (!product) {
+    // Handle product not found case
+    return <div>Product not found</div>;
+  }
+
   return (
     <div>
       <div className="grid grid-cols-3 gap-8 mx-10 my-6 ">
@@ -35,9 +40,10 @@ async function MainProduct({ product }: any) {
                 </div>
               </div>
             </div>
-            <Link href={`/product/${p?._id}`}>
-              <ProductButton></ProductButton>
-            </Link>
+            {p?._id && (
+              <ProductButton productid={p._id}></ProductButton>
+              
+            )}
           </div>
         ))}
       </div>
