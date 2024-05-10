@@ -1,9 +1,11 @@
 import React from 'react'
-import SlideShow from '../Navabar/SlideShow'
-import PatisserieProduct from '../ServiceDescription/PatisserieProduces'
-import Unique from '../ServiceDescription/Unique'
-import OnlineStore from '../ServiceDescription/OnlineStore'
-import Testimonial from '../ServiceDescription/Testimonial'
+import dynamic from 'next/dynamic'
+
+const SlideShow = dynamic(() => import("../Navabar/SlideShow"))
+const PatisserieProduct = dynamic(() => import('../ServiceDescription/PatisserieProduces'))
+const Unique = dynamic(() => import('../ServiceDescription/Unique'))
+const OnlineStore = dynamic(() => import('../ServiceDescription/OnlineStore'))
+const Testimonial = dynamic(() => import('../ServiceDescription/Testimonial'))
 
 function MainComponent() {
   return (

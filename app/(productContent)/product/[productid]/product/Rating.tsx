@@ -17,20 +17,19 @@ async function Rating({productDetails}: any) {
       <div className="flex">
         <div>
           <div className="flex items-center my-3">
-            <p className="text-4xl">{productDetails.rating}</p>
-            <p className=" ">
-              {" "}
-              <p className="text-white bg-yellow-400 flex items-center w-[120px] h-auto ms-2 px-1">
+            <div className="text-4xl">{productDetails.rating}</div>
+           
+              <div className="text-white bg-yellow-400 flex items-center w-[120px] h-auto ms-2 px-1">
                 <IoMdStar color="white" className=""></IoMdStar>
-                <p className="ps-2">
+                <span className="ps-2">
                   {productDetails.rating > 4.5
                     ? "Excelent"
                     : productDetails.rating > 4.3 && productDetails.rating < 4.5
                     ? "Very Good"
                     : "Good"}
-                </p>
-              </p>{" "}
-            </p>
+                </span>
+              </div>{" "}
+            
           </div>
           <Rate disabled defaultValue={productDetails.rating} />
         </div>

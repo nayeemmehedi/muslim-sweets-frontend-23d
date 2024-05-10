@@ -1,10 +1,10 @@
 "use client";
-import { comments } from "@/app/extra/JsonFile/JsonFile";
-import React, { useState, useEffect, useRef } from "react";
 
-export default function Testimonial() {
+import React, { useState, useEffect } from "react";
+import { comments } from "@/app/extra/JsonFile/JsonFile";
+
+const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,53 +36,76 @@ export default function Testimonial() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative  overflow-hidden w-[70%] mx-auto">
       <div
-        className="carousel-container"
-        ref={carouselRef}
-        style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-          transition: "transform 0.6s ease-in-out",
-        }}
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {comments.map((comment, index) => (
-          <div key={index} className="carousel-item">
-            <div className="h-[400px] w-[100%]">
-              <div className="w-[70%] h-[300px] mt-20 ml-auto mr-auto border border-amber-300 md:text-ellipsis md:overflow-hidden sm:text-ellipsis sm:overflow-hidden">
-                <div className="grid justify-items-center">
-                  <img
-                    src={comment.imageSrc}
-                    className="w-14 rounded-full mt-10"
-                    onError={handleImageError}
-                    alt="Testimonial Avatar"
-                  />
-                </div>
-                <p className="text-white w-[80%] ml-auto mr-auto mt-5">
-                  {comment.comments}
-                </p>
-                <div className="text-white grid justify-end w-[80%]">
-                  <h3>{comment.name}</h3>
-                  <p>{comment.customer}</p>
-                </div>
+          <div
+            key={index}
+            className="flex-none w-full px-4 md:px-8 lg:px-12 py-16"
+          >
+            <div className="backgroundColorMain rounded-lg p-6 md:p-8 lg:p-10">
+              <div className="flex items-center justify-center mb-4">
+                <img
+                  src={comment.imageSrc}
+                  className="w-12 h-12 rounded-full"
+                  onError={handleImageError}
+                  alt="Testimonial Avatar"
+                />
+              </div>
+              <p className="text-white text-center mb-6">{comment.comments}</p>
+              <div className="text-white text-center">
+                <h3 className="font-bold">{comment.name}</h3>
+                <p>{comment.customer}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
       <button
-        className="carousel-control prev"
+        className="absolute left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 focus:outline-none"
         onClick={prevSlide}
         aria-label="Previous Slide"
       >
-        &lt;
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
       </button>
       <button
-        className="carousel-control next"
+        className="absolute right-4 md:right-8 lg:right-12 top-1/2 -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 focus:outline-none"
         onClick={nextSlide}
         aria-label="Next Slide"
       >
-        &gt;
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
       </button>
     </div>
   );
-}
+};
+
+export default Testimonial;

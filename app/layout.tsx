@@ -6,8 +6,7 @@ import Navbar from "./component/Navabar/NavbarUp";
 import Footer from "./component/Navabar/Footer";
 import { Suspense } from "react";
 import ReduxProvider from "./StateManagement/provider";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./queryClient";
+import Loading from "./loading";
 
 // import { store } from './app/store'
 
@@ -27,13 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <QueryClientProvider client={queryClient}>
-        <ReduxProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </ReduxProvider>
-        </QueryClientProvider>
+        <Suspense fallback={<Loading></Loading>}>
+          <ReduxProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </ReduxProvider>
+        </Suspense>
       </body>
     </html>
   );

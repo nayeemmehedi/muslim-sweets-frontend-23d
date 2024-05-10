@@ -20,12 +20,12 @@ async function MainProduct({ product }: any) {
           >
             <div>
               <Image
-                className="rounded-md "
+                className="rounded-md object-contain "
                 src={p?.imgUrl}
                 width={350}
                 height={150}
                 alt="Unavailable"
-                style={{ maxHeight: "150px", objectFit: "contain" }}
+                priority
               ></Image>
 
               <div className="flex justify-between content-center p-5">
@@ -40,10 +40,7 @@ async function MainProduct({ product }: any) {
                 </div>
               </div>
             </div>
-            {p?._id && (
-              <ProductButton productid={p._id}></ProductButton>
-              
-            )}
+            {p?._id && <ProductButton productid={p._id}></ProductButton>}
           </div>
         ))}
       </div>
