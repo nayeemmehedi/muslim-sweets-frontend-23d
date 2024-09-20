@@ -56,11 +56,11 @@ async function OnlineStore() {
           </div>
         </div>
 
-        <div className="flex justify-between w-[80%] ml-auto mr-auto">
+        <div className="flex justify-between w-[80%] ml-auto mr-auto cursor-not-allowed	">
           {product?.data?.value?.slice(0, 4)?.map((v: any, key: any) => (
             <div key={key}>
-              <img src={v?.imgUrl} className="w-[200px] h-[200px]" alt="" />
-              <h1 className="my-3">{v?.englishName}/{v?.banglaName}</h1>
+              <img src={v?.imgUrl} className="w-[200px] h-[200px] cursor-not-allowed	" alt="" />
+              <h1 className="my-3 cursor-not-allowed	">{v?.englishName}/{v?.banglaName}</h1>
 
               <p>
                 Available Time:{" "}
