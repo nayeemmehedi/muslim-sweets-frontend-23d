@@ -31,7 +31,7 @@ function ProductDetails({ productDetails }: any) {
                     <div className="h-64 md:h-80 rounded-lg bg-gray-100 mb-4">
                       <div className="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                         <Image
-                          src={productDetails.imgUrl}
+                          src={productDetails?.imgUrl}
                           // layout="responsive"
                           width={400}
                           height={300}
@@ -46,7 +46,7 @@ function ProductDetails({ productDetails }: any) {
                 </div>
                 <div className="md:flex-1 px-4">
                   <h2 className="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">
-                    {productDetails.englishName} / {productDetails.banglaName}
+                    {productDetails?.englishName} / {productDetails?.banglaName}
                   </h2>
 
                   <div className="flex items-center space-x-4 my-4">
@@ -54,13 +54,13 @@ function ProductDetails({ productDetails }: any) {
                       <div className="rounded-lg bg-gray-100 flex py-2 px-3">
                         <span className="text-yellow-800 mr-1 mt-1">৳</span>
                         <span className="font-bold text-yellow-800 text-3xl">
-                          {productDetails.price}
+                          {productDetails?.price}
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-gray-500">{productDetails.description}</p>
+                  <p className="text-gray-500">{productDetails?.description}</p>
 
                   <ProductDetailButton
                     productDetails={productDetails}

@@ -5,19 +5,20 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import Link from "next/link";
 import { ColorChange } from "@/app/utls/ColorChange";
-import { postDataLogin } from "@/app/fetch";
+// import { postDataLogin } from "@/DataFatching/MainApi";
 import Cookies from "js-cookie";
 import { useRouter, useSearchParams } from "next/navigation";
+import { postDataLogin } from "@/app/fetch";
 
-const FormLogin: React.FC = () => {
-  // console.log("eikhne login login ascbe");
-  const [searchValue, setsearchValue] = useState("/");
-
+const FormLogin = () => {
+  const [redirectTo, setRedirectTo] = useState("/");
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const search: any = searchParams.get("redirect");
-    setsearchValue(search);
+    const from = searchParams?.get("from");
+    if (from) {
+      setRedirectTo(from);
+    }
   }, [searchParams]);
 
   const [successValue, setLogin] = useState({
@@ -28,7 +29,7 @@ const FormLogin: React.FC = () => {
 
   const router = useRouter();
 
-  const onFinish = async (values: any) => {
+  const onFinish = async (values:any) => {
     try {
       const value = await postDataLogin(values);
 
@@ -47,17 +48,13 @@ const FormLogin: React.FC = () => {
           loading: false,
           error: false,
         });
+
         // redirect("/")
         //localhost:3000
-
-       
         setTimeout(() => {
-          if (searchValue) {
-            window.location.href = `https://muslim-sweets-frontend-23d.vercel.app/${searchValue}`;
-          } else {
-            window.location.href = `https://muslim-sweets-frontend-23d.vercel.app`;
-          }
-        }, 500);
+          // router.push(redirectTo);
+          window.location.href = redirectTo;
+        }, 1000);
       } else {
         setLogin({
           success: false,
@@ -65,7 +62,7 @@ const FormLogin: React.FC = () => {
           error: true,
         });
       }
-    } catch (error: any) {
+    } catch (error) {
       // console.log(error.message);
       // console.log(error);
 

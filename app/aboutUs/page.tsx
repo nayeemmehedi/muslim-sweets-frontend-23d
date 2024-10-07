@@ -16,13 +16,10 @@ function AboutUs() {
 
           <div className="ms-6">
             <p className="text-2xl font-bold text-red-300">Muslim Sweets Lohagora</p>
-            <p>
+            <p className="font-semibold ">
               {" "}
 
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Blanditiis impedit necessitatibus eos eius iure hic rem enim ex
-              deserunt itaque nostrum numquam, eum perspiciatis ducimus
-              temporibus incidunt rerum quasi dolorem!
+              "We run a sweets business with the goal of fulfilling people's cravings by selling beautiful and delicious sweets. We are highly popular in Lohagora, Narail, and Jessore, Bangladesh. Our aim is to continue delighting our customers with even better sweets, making sure that they love our products more and more with each bite."
             </p>
           </div>
         </div>

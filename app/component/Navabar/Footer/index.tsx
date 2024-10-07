@@ -202,12 +202,15 @@ export default function Footer() {
               </svg>
               01916108472
             </p>
-            {userName && (
+
               <button
                 className="text-yellow-500 border border-yellow-400 px-5 py-1 rounded my-3"
                 onClick={async () => {
                   Cookies.remove("accessToken");
                   Cookies.remove("refreshToken");
+                  Cookies.remove("username");
+
+                  
 
                   localStorage.clear();
                   window.location.reload();
@@ -215,7 +218,7 @@ export default function Footer() {
               >
                 Log Out
               </button>
-            )}
+          
           </div>
         </div>
       </div>

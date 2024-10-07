@@ -1,5 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
+import TopRated from '../ServiceDescription/TopRated'
 
 const SlideShow = dynamic(() => import("../Navabar/SlideShow"))
 const PatisserieProduct = dynamic(() => import('../ServiceDescription/PatisserieProduces'))
@@ -14,7 +15,12 @@ function MainComponent() {
          <PatisserieProduct></PatisserieProduct>
          <Unique></Unique>
          <OnlineStore></OnlineStore>
+         <TopRated></TopRated>
+
          <Testimonial></Testimonial>
+
+
+        
     </div>
   )
 }

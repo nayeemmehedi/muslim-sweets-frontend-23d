@@ -1,48 +1,42 @@
 import MainProduct from "@/app/component/product/mainProduct";
 import Toprate from "@/app/component/product/topRated";
-import { productAll } from "@/app/fetch/product";
-import React from "react";
+import { Dancing_Script } from "next/font/google";
+const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
 
-import type { Metadata } from "next";
-
-export async function generateMetadata() {
-  const product = await productAll();
-
-  if (!product || !product.data?.value?.length) {
-    return {
-      title: "No Products Available - My E-commerce Store",
-      description:
-        "We currently have no products available. Please check back later.",
-    };
+async function fetchProducts() {
+  try {
+    const res = await fetch(
+      "https://muslim-sweets-backend.onrender.com/api/v1/product",
+      { cache: "no-store" }
+    );
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching products:", error);
   }
-
-  // Generate metadata dynamically based on the first few products
-  const productNames = product.data.value
-    .slice(0, 3)
-    .map((p: any) => p.name)
-    .join(", ");
-  const productCount = product.data.value.length;
-
-  return {
-    title: `Buy ${productCount} Products - My E-commerce Store`,
-    description: `Check out our top products: ${productNames}. Find the best deals and prices here!`,
-  };
 }
 
 async function Product() {
-  const product = await productAll();
+  const product = await fetchProducts();
 
   return (
-    <div className="container w-[90%] ml-auto mr-auto">
-      <div className="grid grid-cols-5  gap-3 text-red-800">
-        <div className="my-5">
-          <p>Top Rated</p>
-          <hr />
-          <Toprate product={product}></Toprate>
-        </div>
+    <div className={dancing_Script.className}>
+      <div className="backgroundColorMain">
+        <div className="container w-[90%] mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {/* Left column for Top Rated */}
+            <div className="my-5 lg:col-span-1">
+              <p className="py-3 text-center text-orange-500 text-3xl">
+                Top Rated
+              </p>
+              <hr />
+              <Toprate product={product}></Toprate>
+            </div>
 
-        <div className="col-span-4  ">
-          <MainProduct product={product}></MainProduct>
+            {/* Right column for Main Products */}
+            <div className="col-span-1 lg:col-span-3">
+              <MainProduct product={product}></MainProduct>
+            </div>
+          </div>
         </div>
       </div>
     </div>
