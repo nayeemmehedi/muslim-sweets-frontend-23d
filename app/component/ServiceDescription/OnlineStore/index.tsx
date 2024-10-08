@@ -75,16 +75,17 @@ async function OnlineStore() {
         </div>
 
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4   ml-auto mr-auto cursor-not-allowed lg:w-[90%]	">
-          {product?.data?.value?.map((v:any, key:any) => (
-            <div key={key} className=" mx-4 rounded-lg overflow-hidden shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl bg-white my-3 border-3 ">
+          {product?.data?.value?.map((v: any, key: any) => (
+            <div
+              key={key}
+              className=" mx-4 rounded-lg overflow-hidden shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl bg-white my-3 border-3 "
+            >
               {/* Image Section */}
               <div className="relative h-64 w-full rounded-t-lg object-cover">
                 <Image
                   src={v?.imgUrl} // Replace with your product image
                   alt="Malai Sweet"
-                  loading="lazy"
                   fill
-                 
                 />
               </div>
 
@@ -92,7 +93,9 @@ async function OnlineStore() {
               <div className="p-6">
                 {/* Product Names */}
                 <div className="text-center mb-4">
-                  <h2 className="text-2xl font-bold text-gray-800">{v?.englishName}</h2>
+                  <h2 className="text-2xl font-bold text-gray-800">
+                    {v?.englishName}
+                  </h2>
                   <h3 className="text-lg text-gray-500">{v?.banglaName}</h3>
                 </div>
                 <div className="text-2xl  text-center font-semibold text-red-600">
@@ -107,27 +110,25 @@ async function OnlineStore() {
                     <FaStar className="text-yellow-400" />
                     <FaStar className="text-yellow-400" />
                     <FaStar className="text-gray-300" />
-                    <span className="ml-2 text-sm text-gray-600">{v?.rating}/5</span>
+                    <span className="ml-2 text-sm text-gray-600">
+                      {v?.rating}/5
+                    </span>
                   </div>
                 </div>
 
                 {/* Action Button */}
                 <div className="text-center">
-                  <button className="px-4 py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg transition duration-300">
-                    Buy Now
-                  </button>
+                <Link href={`/product/${v?._id}`}>
+                          <button className="py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg transition duration-300 px-5">
+                            Buy Now
+                          </button>
+                          </Link>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-      
-
-
-
       </div>
-      
     </div>
   );
 }

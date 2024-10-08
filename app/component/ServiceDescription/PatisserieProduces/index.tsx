@@ -31,7 +31,7 @@ function PatisserieProduct() {
               alt="Blurred Image"
               height={400}
               width={400}
-              
+              loading="lazy"
             />
           </div>
 

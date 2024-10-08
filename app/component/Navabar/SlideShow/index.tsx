@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { Dancing_Script } from "next/font/google";
 import "../../../style/slider.css";
 import { imagesSlide } from "@/app/extra/JsonFile/JsonFile";
 import Link from "next/link";
+const LazyImage = lazy(() => import('../../LazyComponent/LazyImage'));
 
 const dancing_Script = Dancing_Script({ subsets: ["latin"], weight: ["700"] });
 
@@ -15,16 +16,20 @@ const SlideShow = () => {
     <div>
       <div>{/* <img src={allsweet.src}  width="200" alt="" ></img> */}</div>
       <Zoom duration={1200} scale={1.4} indicators={true}>
-        {imagesSlide.map((each, index) => (
+        {imagesSlide?.map((each, index) => (
           <div key={index}>
-            <div
+            {/* <div
               className="value "
               style={{
                 backgroundImage: `url(${each.pic.src})`,
                 width: "100%",
                 minHeight: "600px",
               }}
-            ></div>
+            ></div> */}
+             <Suspense >
+              <LazyImage  key={index} src={each.pic.src}></LazyImage>
+              </Suspense>
+            
 
             <div className={dancing_Script.className}>
               <div className="content">

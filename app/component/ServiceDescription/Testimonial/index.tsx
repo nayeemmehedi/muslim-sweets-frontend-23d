@@ -50,18 +50,18 @@ const Testimonial = () => {
               <div className="backgroundColorMain rounded-lg p-6 md:p-8 lg:p-10">
                 <div className="flex items-center justify-center mb-4">
                   <img
-                    src={comment.imageSrc}
+                    src={comment?.imageSrc}
                     className="w-12 h-12 rounded-full"
                     onError={handleImageError}
                     alt="Testimonial Avatar"
                   />
                 </div>
                 <p className="text-white text-center mb-6">
-                  {comment.comments}
+                  {comment?.comments}
                 </p>
                 <div className="text-white text-center">
-                  <h3 className="font-bold">{comment.name}</h3>
-                  <p>{comment.customer}</p>
+                  <h3 className="font-bold">{comment?.name}</h3>
+                  <p>{comment?.customer}</p>
                 </div>
               </div>
             </div>

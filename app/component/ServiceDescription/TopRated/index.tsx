@@ -10,12 +10,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
-import { value } from "../OnlineStore";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { productAll } from "@/app/fetch/product";
+import Link from "next/link";
 
 const inter = Dancing_Script({ subsets: ["latin"], weight: "400" });
 
@@ -66,6 +65,7 @@ function TopRated() {
                           alt="Malai Sweet"
                           fill
                           loading="lazy"
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                           
                         />
                       </div>
@@ -101,9 +101,11 @@ function TopRated() {
 
                         {/* Action Button */}
                         <div className="text-center my-3">
+                        <Link href={`/product/${v?._id}`}>
                           <button className="py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg transition duration-300 px-5">
                             Buy Now
                           </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
