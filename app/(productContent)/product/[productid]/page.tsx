@@ -53,7 +53,7 @@ function ProductPage() {
       if (!id) return; // Ensure `id` is available before fetching
 
       try {
-        const res = await fetch(`https://muslim-sweets-backend.onrender.com/api/v1/product/${id}`, {
+        const res = await fetch(`https://muslim-sweets-backend.vercel.app/api/v1/product/${id}`, {
           cache: "no-store",
         });
         if (!res.ok) {

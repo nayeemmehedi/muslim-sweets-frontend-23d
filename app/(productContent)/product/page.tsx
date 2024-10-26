@@ -61,7 +61,7 @@ function Product() {
     async function fetchProducts() {
       try {
         const res = await fetch(
-          "https://muslim-sweets-backend.onrender.com/api/v1/product",
+          "https://muslim-sweets-backend.vercel.app/api/v1/product",
           { cache: "no-store" }
         );
         if (!res.ok) {
@@ -81,6 +81,8 @@ function Product() {
   if (error) {
     return <p className="text-red-500">Error loading products: {error}</p>;
   }
+
+  
 
   return (
     <div className={dancing_Script.className}>
